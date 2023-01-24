@@ -53,6 +53,9 @@
 			children = (
 				C03C6A73297F9713009937EC /* OpeningsApp.swift */,
 				C03C6A75297F9713009937EC /* ContentView.swift */,
+				C03C6A83297F9892009937EC /* Models */,
+				C03C6A84297F98A5009937EC /* ViewModels */,
+				C03C6A81297F9878009937EC /* VIews */,
 				C03C6A77297F9715009937EC /* Assets.xcassets */,
 				C03C6A79297F9715009937EC /* Preview Content */,
 			);
@@ -65,6 +68,35 @@
 				C03C6A7A297F9715009937EC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C03C6A81297F9878009937EC /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				C03C6A82297F9886009937EC /* HelperViews */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		C03C6A82297F9886009937EC /* HelperViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HelperViews;
+			sourceTree = "<group>";
+		};
+		C03C6A83297F9892009937EC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C03C6A84297F98A5009937EC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
