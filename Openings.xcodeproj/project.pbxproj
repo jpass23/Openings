@@ -13,6 +13,8 @@
 		C03C6A7B297F9715009937EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C03C6A7A297F9715009937EC /* Preview Assets.xcassets */; };
 		C03C6A8629808142009937EC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8529808142009937EC /* Model.swift */; };
 		C03C6A8829808188009937EC /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8729808188009937EC /* Structs.swift */; };
+		C03C6A8A2980EA32009937EC /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A892980EA32009937EC /* BoardView.swift */; };
+		C03C6A8C29818BAB009937EC /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8B29818BAB009937EC /* CellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		C03C6A7A297F9715009937EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C03C6A8529808142009937EC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C03C6A8729808188009937EC /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		C03C6A892980EA32009937EC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		C03C6A8B29818BAB009937EC /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 		C03C6A82297F9886009937EC /* HelperViews */ = {
 			isa = PBXGroup;
 			children = (
+				C03C6A892980EA32009937EC /* BoardView.swift */,
+				C03C6A8B29818BAB009937EC /* CellView.swift */,
 			);
 			path = HelperViews;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 			files = (
 				C03C6A8829808188009937EC /* Structs.swift in Sources */,
 				C03C6A8629808142009937EC /* Model.swift in Sources */,
+				C03C6A8C29818BAB009937EC /* CellView.swift in Sources */,
+				C03C6A8A2980EA32009937EC /* BoardView.swift in Sources */,
 				C03C6A76297F9713009937EC /* ContentView.swift in Sources */,
 				C03C6A74297F9713009937EC /* OpeningsApp.swift in Sources */,
 			);

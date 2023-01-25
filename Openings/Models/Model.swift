@@ -9,4 +9,5 @@ import Foundation
 
 class Model: ObservableObject {
     // Holds state of app. Enjected into the environment in ContentView
+    @Published var board = Board()
 }

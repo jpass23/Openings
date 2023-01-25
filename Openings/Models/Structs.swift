@@ -14,12 +14,14 @@ struct Opening {
     let sequence: [String]
 }
 
-struct Piece {
+struct Piece: Hashable{
     let name: String
     let color: Color
 }
 
-class Cell {
+struct Cell: Equatable, Hashable{
+    let id = UUID()
+    
     let color: Color
     var piece: Piece?
     
@@ -28,11 +30,11 @@ class Cell {
         self.piece = piece
     }
     
-    func setPiece (piece: Piece){
+    mutating func setPiece (piece: Piece){
         self.piece = piece
     }
     
-    func removePiece(){
+    mutating func removePiece(){
         self.piece = nil
     }
 }
@@ -40,11 +42,20 @@ class Cell {
 class Board {
     var cells = [[Cell]]()
     
+    init() {
+        for i in 0..<8 {
+            var subArray = [Cell]()
+            for j in 0..<8{
+                subArray.append(Cell(color: (i%2 + j%2)%2 == 0 ? Color.white : Color.green))
+            }
+            cells.append(subArray)
+        }
+        createBoard()
+    }
+    
     func createBoard(){
         for i in 0..<8{
             for j in 0..<8{
-                cells[i][j] = Cell(color: (i%2 + j%2)%2 == 0 ? Color.green : Color.white)
-                
                 if i == 1{
                     cells[i][j].setPiece(piece: Piece(name: "wpawn", color: Color.white))
                 }else if i == 6{
@@ -57,9 +68,9 @@ class Board {
                     }else if j == 2 || j == 5{
                         cells[i][j].setPiece(piece: Piece(name: "wbishop", color: Color.white))
                     }else if j == 3{
-                        cells[i][j].setPiece(piece: Piece(name: "wqueen", color: Color.white))
-                    }else{
                         cells[i][j].setPiece(piece: Piece(name: "wking", color: Color.white))
+                    }else{
+                        cells[i][j].setPiece(piece: Piece(name: "wqueen", color: Color.white))
                     }
                 }else if i == 7{
                     if j == 0 || j == 7{
@@ -69,9 +80,9 @@ class Board {
                     }else if j == 2 || j == 5{
                         cells[i][j].setPiece(piece: Piece(name: "bbishop", color: Color.black))
                     }else if j == 3{
-                        cells[i][j].setPiece(piece: Piece(name: "bqueen", color: Color.black))
-                    }else{
                         cells[i][j].setPiece(piece: Piece(name: "bking", color: Color.black))
+                    }else{
+                        cells[i][j].setPiece(piece: Piece(name: "bqueen", color: Color.black))
                     }
                 }
             }
