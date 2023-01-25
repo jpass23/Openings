@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Opening {
     let name: String
@@ -15,14 +16,14 @@ struct Opening {
 
 struct Piece {
     let name: String
-    let color: String
+    let color: Color
 }
 
 class Cell {
-    let color: String
+    let color: Color
     var piece: Piece?
     
-    init(color: String, piece: Piece? = nil) {
+    init(color: Color, piece: Piece? = nil) {
         self.color = color
         self.piece = piece
     }
@@ -42,7 +43,37 @@ class Board {
     func createBoard(){
         for i in 0..<8{
             for j in 0..<8{
-                cells[i][j] = Cell(color: (i%2 + j%2)%2 == 0 ? "black" : "white")
+                cells[i][j] = Cell(color: (i%2 + j%2)%2 == 0 ? Color.green : Color.white)
+                
+                if i == 1{
+                    cells[i][j].setPiece(piece: Piece(name: "wpawn", color: Color.white))
+                }else if i == 6{
+                    cells[i][j].setPiece(piece: Piece(name: "bpawn", color: Color.black))
+                }else if i == 0 {
+                    if j == 0 || j == 7{
+                        cells[i][j].setPiece(piece: Piece(name: "wrook", color: Color.white))
+                    }else if j == 1 || j == 6{
+                        cells[i][j].setPiece(piece: Piece(name: "wknight", color: Color.white))
+                    }else if j == 2 || j == 5{
+                        cells[i][j].setPiece(piece: Piece(name: "wbishop", color: Color.white))
+                    }else if j == 3{
+                        cells[i][j].setPiece(piece: Piece(name: "wqueen", color: Color.white))
+                    }else{
+                        cells[i][j].setPiece(piece: Piece(name: "wking", color: Color.white))
+                    }
+                }else if i == 7{
+                    if j == 0 || j == 7{
+                        cells[i][j].setPiece(piece: Piece(name: "brook", color: Color.black))
+                    }else if j == 1 || j == 6{
+                        cells[i][j].setPiece(piece: Piece(name: "bknight", color: Color.black))
+                    }else if j == 2 || j == 5{
+                        cells[i][j].setPiece(piece: Piece(name: "bbishop", color: Color.black))
+                    }else if j == 3{
+                        cells[i][j].setPiece(piece: Piece(name: "bqueen", color: Color.black))
+                    }else{
+                        cells[i][j].setPiece(piece: Piece(name: "bking", color: Color.black))
+                    }
+                }
             }
         }
     }
