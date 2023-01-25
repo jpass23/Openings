@@ -14,12 +14,12 @@ struct Opening {
     let sequence: [String]
 }
 
-struct Piece: Hashable{
+struct Piece {
     let name: String
     let color: Color
 }
 
-struct Cell: Equatable, Hashable{
+class Cell {
     let id = UUID()
     
     let color: Color
@@ -30,11 +30,11 @@ struct Cell: Equatable, Hashable{
         self.piece = piece
     }
     
-    mutating func setPiece (piece: Piece){
+    func setPiece (piece: Piece){
         self.piece = piece
     }
     
-    mutating func removePiece(){
+    func removePiece(){
         self.piece = nil
     }
 }
