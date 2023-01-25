@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var model = Model()
     var body: some View {
         Group {
-            BoardView()
+            ChessView()
         }.environmentObject(model)
     }
 }

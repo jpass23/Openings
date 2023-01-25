@@ -15,6 +15,7 @@
 		C03C6A8829808188009937EC /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8729808188009937EC /* Structs.swift */; };
 		C03C6A8A2980EA32009937EC /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A892980EA32009937EC /* BoardView.swift */; };
 		C03C6A8C29818BAB009937EC /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8B29818BAB009937EC /* CellView.swift */; };
+		C03C6A8E2981905E009937EC /* ChessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8D2981905E009937EC /* ChessView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		C03C6A8729808188009937EC /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		C03C6A892980EA32009937EC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		C03C6A8B29818BAB009937EC /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		C03C6A8D2981905E009937EC /* ChessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		C03C6A81297F9878009937EC /* VIews */ = {
 			isa = PBXGroup;
 			children = (
+				C03C6A8D2981905E009937EC /* ChessView.swift */,
 				C03C6A82297F9886009937EC /* HelperViews */,
 			);
 			path = VIews;
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C03C6A8829808188009937EC /* Structs.swift in Sources */,
+				C03C6A8E2981905E009937EC /* ChessView.swift in Sources */,
 				C03C6A8629808142009937EC /* Model.swift in Sources */,
 				C03C6A8C29818BAB009937EC /* CellView.swift in Sources */,
 				C03C6A8A2980EA32009937EC /* BoardView.swift in Sources */,

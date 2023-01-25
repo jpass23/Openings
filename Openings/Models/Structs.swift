@@ -16,12 +16,20 @@ struct Opening {
 
 struct Piece {
     let name: String
-    let color: Color
+    var color: Color
+    
+    mutating func flipColor(){
+        if color == Color.white{
+            print("White piece")
+            self.color = Color.black
+        }else if color == Color.black{
+            self.color = Color.white
+            print("Black piece")
+        }
+    }
 }
 
 class Cell {
-    let id = UUID()
-    
     let color: Color
     var piece: Piece?
     
@@ -57,35 +65,44 @@ class Board {
         for i in 0..<8{
             for j in 0..<8{
                 if i == 1{
-                    cells[i][j].setPiece(piece: Piece(name: "wpawn", color: Color.white))
+                    cells[i][j].setPiece(piece: Piece(name: "bpawn", color: Color.white))
                 }else if i == 6{
-                    cells[i][j].setPiece(piece: Piece(name: "bpawn", color: Color.black))
+                    cells[i][j].setPiece(piece: Piece(name: "wpawn", color: Color.black))
                 }else if i == 0 {
                     if j == 0 || j == 7{
-                        cells[i][j].setPiece(piece: Piece(name: "wrook", color: Color.white))
+                        cells[i][j].setPiece(piece: Piece(name: "brook", color: Color.white))
                     }else if j == 1 || j == 6{
-                        cells[i][j].setPiece(piece: Piece(name: "wknight", color: Color.white))
+                        cells[i][j].setPiece(piece: Piece(name: "bknight", color: Color.white))
                     }else if j == 2 || j == 5{
-                        cells[i][j].setPiece(piece: Piece(name: "wbishop", color: Color.white))
+                        cells[i][j].setPiece(piece: Piece(name: "bbishop", color: Color.white))
                     }else if j == 3{
-                        cells[i][j].setPiece(piece: Piece(name: "wking", color: Color.white))
+                        cells[i][j].setPiece(piece: Piece(name: "bqueen", color: Color.white))
                     }else{
-                        cells[i][j].setPiece(piece: Piece(name: "wqueen", color: Color.white))
+                        cells[i][j].setPiece(piece: Piece(name: "bking", color: Color.white))
                     }
                 }else if i == 7{
                     if j == 0 || j == 7{
-                        cells[i][j].setPiece(piece: Piece(name: "brook", color: Color.black))
+                        cells[i][j].setPiece(piece: Piece(name: "wrook", color: Color.black))
                     }else if j == 1 || j == 6{
-                        cells[i][j].setPiece(piece: Piece(name: "bknight", color: Color.black))
+                        cells[i][j].setPiece(piece: Piece(name: "wknight", color: Color.black))
                     }else if j == 2 || j == 5{
-                        cells[i][j].setPiece(piece: Piece(name: "bbishop", color: Color.black))
+                        cells[i][j].setPiece(piece: Piece(name: "wbishop", color: Color.black))
                     }else if j == 3{
-                        cells[i][j].setPiece(piece: Piece(name: "bking", color: Color.black))
+                        cells[i][j].setPiece(piece: Piece(name: "wqueen", color: Color.black))
                     }else{
-                        cells[i][j].setPiece(piece: Piece(name: "bqueen", color: Color.black))
+                        cells[i][j].setPiece(piece: Piece(name: "wking", color: Color.black))
                     }
                 }
             }
         }
+    }
+    
+    func flipBoard(){
+        for i in 0..<8{
+            for j in 0..<8{
+                cells[i][j].piece?.flipColor()
+            }
+        }
+        
     }
 }

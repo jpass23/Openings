@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BoardView: View {
-    @EnvironmentObject var model: Model
     var body: some View {
         Grid(horizontalSpacing: 0, verticalSpacing: 0){
             ForEach(0..<8){ row in
