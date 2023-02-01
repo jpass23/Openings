@@ -8,37 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct Opening {
-    let name: String
-    let variation: String?
-    let sequence: [String]
-}
-
-struct Piece {
-    let name: String
-    var color: Color
-    
-    mutating func flipColor(){
-        if color == Color.white{
-            print("White piece")
-            self.color = Color.black
-        }else if color == Color.black{
-            self.color = Color.white
-            print("Black piece")
-        }
-    }
-}
-
-class Cell {
+class Cell: ObservableObject{
     let color: Color
-    var piece: Piece?
+    @Published var piece: String?
     
-    init(color: Color, piece: Piece? = nil) {
+    init(color: Color, piece: String? = nil) {
         self.color = color
         self.piece = piece
     }
     
-    func setPiece (piece: Piece){
+    func setPiece (piece: String){
         self.piece = piece
     }
     
@@ -47,62 +26,53 @@ class Cell {
     }
 }
 
-class Board {
-    var cells = [[Cell]]()
+class Board: ObservableObject{
+    @Published var squares = [String:Cell]()
+    let letterList = ["A", "B", "C", "D", "E", "F", "G", "H"]
     
     init() {
-        for i in 0..<8 {
-            var subArray = [Cell]()
-            for j in 0..<8{
-                subArray.append(Cell(color: (i%2 + j%2)%2 == 0 ? Color.white : Color.green))
+        for index in 0..<8 {
+            for number in 1..<9{
+                squares[letterList[index] + String(number)] = Cell(color: (index%2 + number%2)%2 == 0 ? Color.white : Color.green)
             }
-            cells.append(subArray)
         }
-        createBoard()
+        initializeBoard()
     }
     
-    func createBoard(){
-        for i in 0..<8{
-            for j in 0..<8{
-                if i == 1{
-                    cells[i][j].setPiece(piece: Piece(name: "bpawn", color: Color.white))
-                }else if i == 6{
-                    cells[i][j].setPiece(piece: Piece(name: "wpawn", color: Color.black))
-                }else if i == 0 {
-                    if j == 0 || j == 7{
-                        cells[i][j].setPiece(piece: Piece(name: "brook", color: Color.white))
-                    }else if j == 1 || j == 6{
-                        cells[i][j].setPiece(piece: Piece(name: "bknight", color: Color.white))
-                    }else if j == 2 || j == 5{
-                        cells[i][j].setPiece(piece: Piece(name: "bbishop", color: Color.white))
-                    }else if j == 3{
-                        cells[i][j].setPiece(piece: Piece(name: "bqueen", color: Color.white))
-                    }else{
-                        cells[i][j].setPiece(piece: Piece(name: "bking", color: Color.white))
+    func initializeBoard(){
+        for number in 1..<9 {
+            for letter in letterList{
+                let cell = squares[letter + String(number)]!
+                if number == 1{
+                    if letter == "A" || letter == "H"{
+                        cell.piece = "wrook"
+                    }else if letter == "B" || letter == "G"{
+                        cell.piece = "wknight"
+                    }else if letter == "C" || letter == "F"{
+                        cell.piece = "wbishop"
+                    }else if letter == "D"{
+                        cell.piece = "wqueen"
+                    }else if letter == "E"{
+                        cell.piece = "wking"
                     }
-                }else if i == 7{
-                    if j == 0 || j == 7{
-                        cells[i][j].setPiece(piece: Piece(name: "wrook", color: Color.black))
-                    }else if j == 1 || j == 6{
-                        cells[i][j].setPiece(piece: Piece(name: "wknight", color: Color.black))
-                    }else if j == 2 || j == 5{
-                        cells[i][j].setPiece(piece: Piece(name: "wbishop", color: Color.black))
-                    }else if j == 3{
-                        cells[i][j].setPiece(piece: Piece(name: "wqueen", color: Color.black))
-                    }else{
-                        cells[i][j].setPiece(piece: Piece(name: "wking", color: Color.black))
+                }else if number == 2{
+                    cell.piece = "wpawn"
+                }else if number == 7{
+                    cell.piece = "bpawn"
+                }else if number == 8{
+                    if letter == "A" || letter == "H"{
+                        cell.piece = "brook"
+                    }else if letter == "B" || letter == "G"{
+                        cell.piece = "bknight"
+                    }else if letter == "C" || letter == "F"{
+                        cell.piece = "bbishop"
+                    }else if letter == "D"{
+                        cell.piece = "bqueen"
+                    }else if letter == "E"{
+                        cell.piece = "bking"
                     }
                 }
             }
         }
-    }
-    
-    func flipBoard(){
-        for i in 0..<8{
-            for j in 0..<8{
-                cells[i][j].piece?.flipColor()
-            }
-        }
-        
     }
 }

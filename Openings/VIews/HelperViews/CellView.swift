@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-struct CellView: View {
-    @EnvironmentObject var model: Model
-    let row: Int
-    let column: Int
+struct CellView: View{
+    @EnvironmentObject var board: Board
+    let cellName: String
+    //let cell: Cell
     
     var body: some View {
+        let cell = board.squares[cellName]!
         ZStack {
-            Rectangle().frame(width: UIScreen.screenWidth/9, height: UIScreen.screenWidth/9).foregroundColor(model.board.cells[row][column].color)
-            if let imageName = model.board.cells[row][column].piece?.name{
-                Image(imageName).resizable().frame(width: UIScreen.screenWidth/10, height: UIScreen.screenWidth/10)
+            Rectangle().frame(width: UIScreen.screenWidth/9, height: UIScreen.screenWidth/9).foregroundColor(cell.color)
+            if let piece = cell.piece {
+                Image(piece).resizable().frame(width: UIScreen.screenWidth/10, height: UIScreen.screenWidth/10)
             }
         }
     }
@@ -24,6 +25,6 @@ struct CellView: View {
 
 //struct CellView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        CellView()
+//        CellView(cellName: "A1", cell: Cell(color: Color.green, piece: "wknight"))
 //    }
 //}

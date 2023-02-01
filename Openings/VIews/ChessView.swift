@@ -8,22 +8,36 @@
 import SwiftUI
 
 struct ChessView: View {
-    @EnvironmentObject var model: Model
-    @State var playerColor = false
+    //@EnvironmentObject var model: Model
+    @State var playingBlack = false
+    @State var openingName: String?
+    @State var showMenu = false
+    
     var body: some View {
-        VStack{
-            Text("Opening Name").font(.largeTitle).fontWeight(.bold)
-            Text("I play...")
-            HStack{
+        NavigationStack {
+            VStack{
+                Text("I play...")
+                HStack{
+                    Spacer()
+                    Text("White")
+                    Toggle(isOn: $playingBlack){}.tint(.black)
+                    Text("Black")
+                    Spacer()
+                }
+                BoardView(playingBlack: $playingBlack)
                 Spacer()
-                Text("White")
-                Toggle(isOn: $playerColor){}.tint(.black)
-                Text("Black")
-                Spacer()
+            }.navigationTitle(openingName ?? "No Opening")
+            .toolbar{
+                ToolbarItem{
+                    Button{
+                        showMenu.toggle()
+                    }label: {
+                        Image(systemName: "line.3.horizontal")
+                    }
+                }
+            }.sheet(isPresented: $showMenu) {} content: {
+                OpeningListView(openingName: $openingName, showMenu: $showMenu)
             }
-            BoardView()
-        }.onChange(of: playerColor) { _ in
-            model.board.flipBoard()
         }
     }
 }
