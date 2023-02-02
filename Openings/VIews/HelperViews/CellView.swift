@@ -13,10 +13,9 @@ struct CellView: View{
     //let cell: Cell
     
     var body: some View {
-        let cell = board.squares[cellName]!
         ZStack {
-            Rectangle().frame(width: UIScreen.screenWidth/9, height: UIScreen.screenWidth/9).foregroundColor(cell.color)
-            if let piece = cell.piece {
+            Rectangle().frame(width: UIScreen.screenWidth/9, height: UIScreen.screenWidth/9).foregroundColor(board.squares[cellName]!.color)
+            if let piece = board.squares[cellName]!.piece {
                 Image(piece).resizable().frame(width: UIScreen.screenWidth/10, height: UIScreen.screenWidth/10)
             }
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BoardView: View {
-    @StateObject var board = Board()
+    @EnvironmentObject var board: Board
     @Binding var playingBlack: Bool
 
     var body: some View {
@@ -25,7 +25,6 @@ struct BoardView: View {
                 }
             }
         }.border(.green)
-            .environmentObject(board)
     }
 }
 

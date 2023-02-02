@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ChessView: View {
-    //@EnvironmentObject var model: Model
+    @EnvironmentObject var model: Model
+    @StateObject var board = Board()
+    
     @State var playingBlack = false
-    @State var openingName: String?
+    @State var opening: Opening?
     @State var showMenu = false
+    @State var currentMove = 0
     
     var body: some View {
         NavigationStack {
@@ -26,7 +29,30 @@ struct ChessView: View {
                 }
                 BoardView(playingBlack: $playingBlack)
                 Spacer()
-            }.navigationTitle(openingName ?? "No Opening")
+                HStack {
+                    Text("Moves: ")
+                    Spacer()
+                }
+                HStack{
+                    Button{
+
+                    }label: {
+                        ZStack{
+                            Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
+                            Image(systemName: "chevron.left")
+                        }
+                    }
+                    
+                    Button{
+                        cycleMoves("forward")
+                    }label: {
+                        ZStack{
+                            Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                }
+            }.navigationTitle(opening?.name ?? "No Opening")
             .toolbar{
                 ToolbarItem{
                     Button{
@@ -36,7 +62,39 @@ struct ChessView: View {
                     }
                 }
             }.sheet(isPresented: $showMenu) {} content: {
-                OpeningListView(openingName: $openingName, showMenu: $showMenu)
+                OpeningListView(opening: $opening, showMenu: $showMenu)
+            }
+        }.environmentObject(board)
+    }
+    
+    func cycleMoves(_ direction: String){
+        if direction == "forward"{
+            if (currentMove < opening?.sequence.count ?? 0){
+                makeMove(move: opening?.sequence[currentMove])
+            }
+            currentMove += 1
+        }else{
+            // Do other things
+        }
+    }
+    
+    func makeMove(move: Move?){
+        if let move = move{
+            let startCell = board.squares[move.startSquare]!
+            let endCell = board.squares[move.endSquare]!
+            let piece = startCell.piece!
+            board.squares[move.startSquare]!.piece = nil
+            
+            if endCell.piece == nil{
+                board.squares[move.endSquare]!.piece = piece
+                print("Start: \(move.startSquare)")
+                print("End: \(move.endSquare)\n")
+                print(board.squares[move.startSquare]?.piece)
+                print(board.squares[move.endSquare]?.piece)
+            }else{
+                //move.capturedPiece = piece
+                //set captured piece to piece
+                board.squares[move.endSquare]!.piece = piece
             }
         }
     }

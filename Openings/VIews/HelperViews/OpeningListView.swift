@@ -9,22 +9,20 @@ import SwiftUI
 
 struct OpeningListView: View {
     @EnvironmentObject var model: Model
-    @Binding var openingName: String?
+    @Binding var opening: Opening?
     @Binding var showMenu: Bool
     
     var body: some View {
         List {
-            ForEach(model.openingsList, id: \.self){ opening in
-                Section("Sicilian Variations") {
-                    if opening.contains("Sicilian"){
-                        Button{
-                            openingName = opening
-                            showMenu = false
-                        }label: {
-                            Text(opening).foregroundColor(.primary)
-                        }
+            ForEach(model.openingsList.sorted(by: <), id: \.key){ (key, value) in
+                //Section("Sicilian Variations") {
+                    Button{
+                        opening = value
+                        showMenu = false
+                    }label: {
+                        Text(key).foregroundColor(.primary)
                     }
-                }
+                //}
             }
         }
     }
