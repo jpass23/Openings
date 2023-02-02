@@ -27,7 +27,7 @@ struct ChessView: View {
                     Text("Black")
                     Spacer()
                 }
-                BoardView(playingBlack: $playingBlack)
+                BoardView(board: board, playingBlack: $playingBlack)
                 Spacer()
                 HStack {
                     Text("Moves: ")
@@ -79,22 +79,18 @@ struct ChessView: View {
     }
     
     func makeMove(move: Move?){
-        if let move = move{
-            let startCell = board.squares[move.startSquare]!
-            let endCell = board.squares[move.endSquare]!
+        if let localMove = move{
+            let startCell = board.squares[localMove.startSquare]!
+            let endCell = board.squares[localMove.endSquare]!
             let piece = startCell.piece!
-            board.squares[move.startSquare]!.piece = nil
+            board.squares[localMove.startSquare]!.piece = nil
             
             if endCell.piece == nil{
-                board.squares[move.endSquare]!.piece = piece
-                print("Start: \(move.startSquare)")
-                print("End: \(move.endSquare)\n")
-                print(board.squares[move.startSquare]?.piece)
-                print(board.squares[move.endSquare]?.piece)
+                board.squares[localMove.endSquare]!.piece = piece
             }else{
-                //move.capturedPiece = piece
+                //localMove.capturedPiece = piece
                 //set captured piece to piece
-                board.squares[move.endSquare]!.piece = piece
+                board.squares[localMove.endSquare]!.piece = piece
             }
         }
     }

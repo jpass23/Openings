@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BoardView: View {
-    @EnvironmentObject var board: Board
+    @ObservedObject var board: Board
     @Binding var playingBlack: Bool
 
     var body: some View {
@@ -17,9 +17,13 @@ struct BoardView: View {
                 GridRow{
                     ForEach(0..<8){ letterIndex in
                         if playingBlack{
-                            CellView(cellName: board.letterList[7-letterIndex]+String(number))
+                            let index = 7-letterIndex
+                            let cellName = board.letterList[index]+String(number)
+                            CellView(cell: board.squares[cellName]!)
                         }else{
-                            CellView(cellName: board.letterList[letterIndex]+String(9-number))
+                            let indexNumber = 9-number
+                            let cellName = board.letterList[letterIndex]+String(indexNumber)
+                            CellView(cell: board.squares[cellName]!)
                         }
                     }
                 }
