@@ -67,7 +67,7 @@ struct ChessView: View {
                         if let opening = opening{
                             Text(opening.name).font(.largeTitle).fontWeight(.bold).foregroundColor(.primary)
                         }else{
-                            Text("Click to choose opening...").font(.title).fontWeight(.bold).foregroundColor(.primary)
+                            Text("Select Opening").font(.title).fontWeight(.bold).foregroundColor(.primary)
                         }
                         //Text(opening?.name ?? "Choose an opening...").font(.largeTitle).fontWeight(.bold).foregroundColor(.primary)
                     }
@@ -75,10 +75,9 @@ struct ChessView: View {
             }.sheet(isPresented: $showMenu) {} content: {
                 OpeningListView(opening: $opening, showMenu: $showMenu)
             }.environmentObject(board)
-            .onChange(of: self.opening) { newValue in
-                self.playingColor = "White"
-                self.showMenu = false
+            .onChange(of: self.opening) { _ in
                 self.currentMove = 0
+                self.board.resetBoard()
             }
         //} //NavigationStack
     }
@@ -93,15 +92,7 @@ struct ChessView: View {
             if currentMove >= 1{
                 currentMove -= 1
                 makeMove(move: opening?.sequence[currentMove], backwards: true)
-//                let startSqare = (opening?.sequence[currentMove].endSquare)!
-//                let endSquare = (opening?.sequence[currentMove].startSquare)!
-//                if let capturedPiece = opening?.sequence[currentMove].capturedPiece{
-//                    makeMove(move: Move(startSqare, endSquare, capturedPiece: capturedPiece), backwards: true)
-//                }else{
-//                    makeMove(move: Move(startSqare, endSquare), backwards: true)
-//                }
             }
-            // Do other things
         }
     }
     
@@ -114,10 +105,32 @@ struct ChessView: View {
                 if move.capturedPiece != nil {
                     board.squares[move.endSquare]!.piece = move.capturedPiece
                 }
-            }else{
+                if move.castled {
+                    if move.endSquare == "G1"{ //Kinside white
+                        makeMove(move: Move("H1", "F1"), backwards: true)
+                    }else if move.endSquare == "C1"{ //Queenside white
+                        makeMove(move: Move("A1", "D1"), backwards: true)
+                    }else if move.endSquare == "G8"{ // Kingside black
+                        makeMove(move: Move("H8", "F8"), backwards: true)
+                    }else if move.endSquare == "C8"{ // Queenside black
+                        makeMove(move: Move("A8", "D8"), backwards: true)
+                    }
+                }
+            }else{ //forward
                 let piece = board.squares[move.startSquare]!.piece!
                 board.squares[move.startSquare]!.piece = nil
                 board.squares[move.endSquare]!.piece = piece
+                if move.castled {
+                    if move.endSquare == "G1"{ //Kinside white
+                        makeMove(move: Move("H1", "F1"), backwards: false)
+                    }else if move.endSquare == "C1"{ //Queenside white
+                        makeMove(move: Move("A1", "D1"), backwards: false)
+                    }else if move.endSquare == "G8"{ // Kingside black
+                        makeMove(move: Move("H8", "F8"), backwards: false)
+                    }else if move.endSquare == "C8"{ // Queenside black
+                        makeMove(move: Move("A8", "D8"), backwards: false)
+                    }
+                }
             }
         }
     }

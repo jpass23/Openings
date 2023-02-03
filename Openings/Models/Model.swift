@@ -44,11 +44,15 @@ struct Move {
     var startSquare: String
     var endSquare: String
     var capturedPiece: String?
+    var castled: Bool
+    //static let QSCastleWhite: (Move,Move) = (Move("A1", "D1"), Move("E1", "C1"))
+    //static let KSCastleWhite: (Move,Move) = (Move("H1", "F1"), Move("E1", "G1"))
     
-    init(_ startSquare: String, _ endSquare: String, capturedPiece: String? = nil) {
+    init(_ startSquare: String, _ endSquare: String, capturedPiece: String? = nil, castled: Bool = false) {
         self.startSquare = startSquare
         self.endSquare = endSquare
         self.capturedPiece = capturedPiece
+        self.castled = castled
     }
     
     mutating func flipMove(){
@@ -59,7 +63,9 @@ struct Move {
 }
 
 class Model: ObservableObject {
-    let sicilian: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4",capturedPiece: "wpawn"), Move("F3","D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3")]
+    let sicilianClassic: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4",capturedPiece: "wpawn"), Move("F3","D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3"), Move("B8", "C6")]
+    let sicilianNajdorf: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4",capturedPiece: "wpawn"), Move("F3","D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3"), Move("A7", "A6")]
+    let royLopez: [Move] = [Move("E2", "E4"), Move("E7", "E5"), Move("G1", "F3"), Move("B8", "C6"), Move("F1", "B5"), Move("A7", "A6"), Move("B5", "A4"), Move("G8", "F6"), Move("E1", "G1", castled: true)]
     
     var openingsList: [String: Opening] = [String: Opening]()
     
@@ -68,6 +74,8 @@ class Model: ObservableObject {
     }
     
     func createList(){
-        self.openingsList["Sicilian"] = Opening(name: "Sicilian", sequence: sicilian)
+        self.openingsList["Sicilian-Classical"] = Opening(name: "Sicilian", variation: "Classical", sequence: sicilianClassic) //Key is displayed in list while opening.name is desplayed as title
+        self.openingsList["Sicilian-Najdorf"] = Opening(name: "Sicilian", variation: "Classical", sequence: sicilianNajdorf)
+        self.openingsList["Roy Lopez"] = Opening(name: "Roy Lopez", sequence: royLopez)
     }
 }
