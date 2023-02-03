@@ -11,7 +11,7 @@ struct Opening {
 
     let name: String
     let variation: String?
-    let sequence: [Move]
+    var sequence: [Move]
     
     init(name: String, variation: String? = nil, sequence: [Move]) {
         self.name = name
@@ -41,8 +41,8 @@ extension Opening: Comparable {
 }
 
 struct Move {
-    let startSquare: String
-    let endSquare: String
+    var startSquare: String
+    var endSquare: String
     var capturedPiece: String?
     
     init(_ startSquare: String, _ endSquare: String, capturedPiece: String? = nil) {
@@ -50,10 +50,16 @@ struct Move {
         self.endSquare = endSquare
         self.capturedPiece = capturedPiece
     }
+    
+    mutating func flipMove(){
+        let localStart = self.startSquare
+        self.startSquare = self.endSquare
+        self.endSquare = localStart
+    }
 }
 
 class Model: ObservableObject {
-    let sicilian: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4"), Move("F3","D4"), Move("G8", "F6"), Move("B1", "C3")]
+    let sicilian: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4",capturedPiece: "wpawn"), Move("F3","D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3")]
     
     var openingsList: [String: Opening] = [String: Opening]()
     

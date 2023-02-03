@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var model = Model()
     var body: some View {
-        Group {
+        NavigationStack {
             ChessView()
         }.environmentObject(model)
     }

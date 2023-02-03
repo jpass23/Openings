@@ -9,14 +9,14 @@ import SwiftUI
 
 struct BoardView: View {
     @ObservedObject var board: Board
-    @Binding var playingBlack: Bool
+    @Binding var playingColor: String
 
     var body: some View {
         Grid(horizontalSpacing: 0, verticalSpacing: 0){
             ForEach(1..<9){ number in
                 GridRow{
                     ForEach(0..<8){ letterIndex in
-                        if playingBlack{
+                        if playingColor == "Black"{
                             let index = 7-letterIndex
                             let cellName = board.letterList[index]+String(number)
                             CellView(cell: board.squares[cellName]!)
