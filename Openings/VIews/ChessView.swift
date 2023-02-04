@@ -64,12 +64,14 @@ struct ChessView: View {
                     Button{
                         showMenu.toggle()
                     }label: {
-                        if let opening = opening{
-                            Text(opening.name).font(.largeTitle).fontWeight(.bold).foregroundColor(.primary)
-                        }else{
-                            Text("Select Opening").font(.title).fontWeight(.bold).foregroundColor(.primary)
-                        }
-                        //Text(opening?.name ?? "Choose an opening...").font(.largeTitle).fontWeight(.bold).foregroundColor(.primary)
+                        HStack{
+                            if let opening = opening{
+                                Text(opening.name).font(.largeTitle).fontWeight(.bold)
+                            }else{
+                                Text("Select Opening").font(.title).fontWeight(.bold)
+                            }
+                            Image(systemName: "chevron.right")
+                        }.foregroundColor(.primary)
                     }
                 }
             }.sheet(isPresented: $showMenu) {} content: {

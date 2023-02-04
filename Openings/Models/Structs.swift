@@ -39,14 +39,21 @@ extension StringProtocol {
     }
 }
 
+extension Color{
+    static let deepGreen = Color(red: 47/255, green: 109/255, blue: 64/255)
+    static let royalPurple = Color(red: 73/255, green: 51/255, blue: 152/255)
+}
+
 class Board: ObservableObject{
     @Published var squares = [String:Cell]()
+    @Published var lightSquareColor = Color.white
+    @Published var darkSquareColor = Color.deepGreen
     let letterList = ["A", "B", "C", "D", "E", "F", "G", "H"]
     
     init() {
         for index in 0..<8 {
             for number in 1..<9{
-                squares[letterList[index] + String(number)] = Cell(color: (index%2 + number%2)%2 == 0 ? Color.white : Color.green)
+                squares[letterList[index] + String(number)] = Cell(color: (index%2 + number%2)%2 == 0 ? lightSquareColor : darkSquareColor)
             }
         }
         initializeBoard()

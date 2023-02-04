@@ -28,7 +28,7 @@ struct BoardView: View {
                     }
                 }
             }
-        }.border(.green)
+        }.border(board.darkSquareColor)
     }
 }
 
