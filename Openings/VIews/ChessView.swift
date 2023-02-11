@@ -17,71 +17,62 @@ struct ChessView: View {
     @State var currentMove = 0
     
     var body: some View {
-        //NavigationStack {
-            VStack{
-                Spacer()
-                Text("I play as:").font(.title)
+        VStack{
+            Button{
+                showMenu.toggle()
+            }label: {
                 HStack{
-                    Spacer()
-                    Picker("I play as...", selection: $playingColor) {
-                        Text("White").tag("White")
-                        Text("Black").tag("Black")
-                    }.pickerStyle(.segmented)
-                    Spacer()
-                }
-                Spacer()
-                BoardView(board: board, playingColor: $playingColor)
-                Spacer()
-//                HStack {
-//                    Text("Moves: ")
-//                    Spacer()
-//                }.padding()
-                HStack{
-                    Button{
-                        if opening != nil {
-                            cycleMoves("backward")
-                        }
-                    }label: {
-                        ZStack{
-                            Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
-                            Image(systemName: "chevron.left")
-                        }
+                    if let opening = opening{
+                        Text(opening.name).font(.largeTitle).fontWeight(.bold)
+                    }else{
+                        Text("Select Opening").font(.title).fontWeight(.bold)
                     }
-                    
-                    Button{
-                        if opening != nil {
-                            cycleMoves("forward")
-                        }
-                    }label: {
-                        ZStack{
-                            Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
-                            Image(systemName: "chevron.right")
-                        }
-                    }
-                }
-            }.toolbar{
-                ToolbarItem (placement: .navigationBarLeading){
-                    Button{
-                        showMenu.toggle()
-                    }label: {
-                        HStack{
-                            if let opening = opening{
-                                Text(opening.name).font(.largeTitle).fontWeight(.bold)
-                            }else{
-                                Text("Select Opening").font(.title).fontWeight(.bold)
-                            }
-                            Image(systemName: "chevron.right")
-                        }.foregroundColor(.primary)
-                    }
-                }
-            }.sheet(isPresented: $showMenu) {} content: {
-                OpeningListView(opening: $opening, showMenu: $showMenu)
-            }.environmentObject(board)
-            .onChange(of: self.opening) { _ in
-                self.currentMove = 0
-                self.board.resetBoard()
+                    Image(systemName: "chevron.down")
+                }.foregroundColor(.primary)
             }
-        //} //NavigationStack
+            Spacer()
+            Text("I play as:").font(.title)
+            HStack{
+                Spacer()
+                Picker("I play as...", selection: $playingColor) {
+                    Text("White").tag("White")
+                    Text("Black").tag("Black")
+                }.pickerStyle(.segmented)
+                Spacer()
+            }
+            Spacer()
+            BoardView(board: board, playingColor: $playingColor)
+            Spacer()
+            HStack{
+                Button{
+                    if opening != nil {
+                        cycleMoves("backward")
+                    }
+                }label: {
+                    ZStack{
+                        Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
+                        Image(systemName: "chevron.left")
+                    }
+                }
+                
+                Button{
+                    if opening != nil {
+                        cycleMoves("forward")
+                    }
+                }label: {
+                    ZStack{
+                        Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
+                        Image(systemName: "chevron.right")
+                    }
+                }
+            }
+        }.sheet(isPresented: $showMenu) {} content: {
+            OpeningListView(opening: $opening, showMenu: $showMenu)
+        }.environmentObject(board)
+        .onChange(of: self.opening) { _ in
+            self.currentMove = 0
+            self.board.resetBoard()
+        }
     }
     
     func cycleMoves(_ direction: String){

@@ -41,13 +41,13 @@ extension StringProtocol {
 
 extension Color{
     static let deepGreen = Color(red: 47/255, green: 109/255, blue: 64/255)
-    static let royalPurple = Color(red: 73/255, green: 51/255, blue: 152/255)
+    static let royalPurple = Color(red: 113/255, green: 91/255, blue: 192/255)
 }
 
 class Board: ObservableObject{
     @Published var squares = [String:Cell]()
     @Published var lightSquareColor = Color.white
-    @Published var darkSquareColor = Color.deepGreen
+    @Published var darkSquareColor = Color.royalPurple
     let letterList = ["A", "B", "C", "D", "E", "F", "G", "H"]
     
     init() {
