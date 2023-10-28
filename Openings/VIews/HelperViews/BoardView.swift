@@ -11,25 +11,45 @@ struct BoardView: View {
     @ObservedObject var board: Board
     @EnvironmentObject var model: Model
     @Binding var playingColor: String
-
+    @StateObject var vm = BoardViewModel()
+    let clickable: Bool
+    
+    
     var body: some View {
         Grid(horizontalSpacing: 0, verticalSpacing: 0) {
             ForEach(1..<9) { number in
                 GridRow {
                     ForEach(0..<8) { letterIndex in
-                        if playingColor == "Black" {
-                            let index = 7-letterIndex
-                            let cellName = board.letterList[index]+String(number)
-                            CellView(cell: board.squares[cellName]!)
-                        } else {
-                            let indexNumber = 9-number
-                            let cellName = board.letterList[letterIndex]+String(indexNumber)
-                            CellView(cell: board.squares[cellName]!)
-                        }
+                        cell(cellName: cellName(number: number, letterIndex: letterIndex))
                     }
                 }
             }
         }.border(model.darkSquareColor)
+    }
+    
+    @ViewBuilder
+    func cell(cellName: String) -> some View {
+        if clickable{
+            Button{
+                vm.cellClick(cell: board.squares[cellName]!)
+            }label: {
+                CellView(cell: board.squares[cellName]!)
+            }
+        }else{
+            CellView(cell: board.squares[cellName]!)
+        }
+    }
+    
+    func cellName(number: Int, letterIndex: Int) -> String {
+        let index = 7-letterIndex
+        let indexNumber = 9-number
+        var cellName = ""
+        if playingColor == "Black" {
+            cellName = board.letterList[index]+String(number)
+        } else {
+            cellName = board.letterList[letterIndex]+String(indexNumber)
+        }
+        return cellName
     }
 }
 

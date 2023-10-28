@@ -16,7 +16,9 @@
 		C03C6A8829808188009937EC /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8729808188009937EC /* Structs.swift */; };
 		C03C6A8A2980EA32009937EC /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A892980EA32009937EC /* BoardView.swift */; };
 		C03C6A8C29818BAB009937EC /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8B29818BAB009937EC /* CellView.swift */; };
-		C03C6A8E2981905E009937EC /* ChessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8D2981905E009937EC /* ChessView.swift */; };
+		C03C6A8E2981905E009937EC /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8D2981905E009937EC /* LearnView.swift */; };
+		C048E07C29BEA048004932A1 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048E07B29BEA048004932A1 /* PracticeView.swift */; };
+		C048E07E29BEA7F2004932A1 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048E07D29BEA7F2004932A1 /* BoardViewModel.swift */; };
 		C089E9C0298AE21300398FE6 /* OpeningListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089E9BF298AE21300398FE6 /* OpeningListView.swift */; };
 		C089E9C2298AE29300398FE6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089E9C1298AE29300398FE6 /* Model.swift */; };
 /* End PBXBuildFile section */
@@ -32,7 +34,9 @@
 		C03C6A8729808188009937EC /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		C03C6A892980EA32009937EC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		C03C6A8B29818BAB009937EC /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
-		C03C6A8D2981905E009937EC /* ChessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessView.swift; sourceTree = "<group>"; };
+		C03C6A8D2981905E009937EC /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
+		C048E07B29BEA048004932A1 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		C048E07D29BEA7F2004932A1 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
 		C089E9BF298AE21300398FE6 /* OpeningListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningListView.swift; sourceTree = "<group>"; };
 		C089E9C1298AE29300398FE6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +93,8 @@
 		C03C6A81297F9878009937EC /* VIews */ = {
 			isa = PBXGroup;
 			children = (
-				C03C6A8D2981905E009937EC /* ChessView.swift */,
+				C03C6A8D2981905E009937EC /* LearnView.swift */,
+				C048E07B29BEA048004932A1 /* PracticeView.swift */,
 				C089E9BF298AE21300398FE6 /* OpeningListView.swift */,
 				C020DCC829A06746002596E5 /* LandingPageView.swift */,
 				C020DCCA29A06782002596E5 /* SettingsView.swift */,
@@ -119,6 +124,7 @@
 		C03C6A84297F98A5009937EC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C048E07D29BEA7F2004932A1 /* BoardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -195,14 +201,16 @@
 			files = (
 				C089E9C0298AE21300398FE6 /* OpeningListView.swift in Sources */,
 				C03C6A8829808188009937EC /* Structs.swift in Sources */,
-				C03C6A8E2981905E009937EC /* ChessView.swift in Sources */,
+				C03C6A8E2981905E009937EC /* LearnView.swift in Sources */,
 				C03C6A8C29818BAB009937EC /* CellView.swift in Sources */,
 				C03C6A8A2980EA32009937EC /* BoardView.swift in Sources */,
+				C048E07C29BEA048004932A1 /* PracticeView.swift in Sources */,
 				C020DCCB29A06782002596E5 /* SettingsView.swift in Sources */,
 				C03C6A76297F9713009937EC /* ContentView.swift in Sources */,
 				C03C6A74297F9713009937EC /* OpeningsApp.swift in Sources */,
 				C020DCC929A06746002596E5 /* LandingPageView.swift in Sources */,
 				C089E9C2298AE29300398FE6 /* Model.swift in Sources */,
+				C048E07E29BEA7F2004932A1 /* BoardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,10 +17,12 @@ struct LandingPageView: View {
             Spacer()
             Group {
                 NavigationLink("Learn") {
-                    ChessView()
+                    LearnView()
                 }
                 Spacer()
-                NavigationLink("Practice") {}
+                NavigationLink("Practice") {
+                    PracticeView()
+                }
             }.buttonStyle(.bordered)
                 .controlSize(.large)
             Spacer()

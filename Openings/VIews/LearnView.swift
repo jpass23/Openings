@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChessView: View {
+struct LearnView: View {
     @EnvironmentObject var model: Model
     @StateObject var board = Board()
     
@@ -41,7 +41,7 @@ struct ChessView: View {
                 Spacer()
             }
             Spacer()
-            BoardView(board: board, playingColor: $playingColor)
+            BoardView(board: board, playingColor: $playingColor, clickable: false)
             Spacer()
             HStack {
                 Button {
@@ -131,6 +131,6 @@ struct ChessView: View {
 
 struct ChessView_Previews: PreviewProvider {
     static var previews: some View {
-        ChessView()
+        LearnView()
     }
 }

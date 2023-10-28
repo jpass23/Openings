@@ -3,7 +3,7 @@
 //  Openings
 //
 //  Created by Jaden Passero on 2/1/23.
-//
+// https://www.mark-weeks.com/aboutcom/aa05l17.htm
 
 import Foundation
 import SwiftUI
