@@ -14,7 +14,11 @@ The Practice section is where the user can go to play out the moves and check to
 ## Screenshots:
 <div align=left>
 
-<img src=" " width="200"/>
+<img src="https://github.com/jpass23/Openings/blob/main/Screenshots/Main%20Page.png" width="250"/>
+
+<img src="https://github.com/jpass23/Openings/blob/main/Screenshots/Board%20Page.png" width="250"/>
+
+<img src="https://github.com/jpass23/Openings/blob/main/Screenshots/Settings%20Page.png" width="250"/>
 
 </div>
 
