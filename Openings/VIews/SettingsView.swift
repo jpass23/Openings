@@ -12,10 +12,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section("Aesthetics") {
-                Picker("Select a color", selection: $model.darkSquareColor) {
-                    Text("Green - default").tag(Color.deepGreen)
-                    Text("Purple").tag(Color.royalPurple)
-                }
+                ColorPicker("Select a color", selection: $model.darkSquareColor)
             }
         }
     }
