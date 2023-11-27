@@ -79,4 +79,8 @@ class Model: ObservableObject {
         self.openingsList["Sicilian-Najdorf"] = Opening(name: "Sicilian", variation: "Classical", sequence: self.sicilianNajdorf)
         self.openingsList["Roy Lopez"] = Opening(name: "Roy Lopez", sequence: self.royLopez)
     }
+    
+    func clearData(){
+        
+    }
 }
