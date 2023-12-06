@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BoardView: View {
-    @ObservedObject var board: Board
+    @ObservedObject var vm: BoardViewModel
     @EnvironmentObject var model: Model
     @Binding var playingColor: String
-    @StateObject var vm = BoardViewModel()
+
     let clickable: Bool
     
     
@@ -31,12 +31,12 @@ struct BoardView: View {
     func cell(cellName: String) -> some View {
         if clickable{
             Button{
-                vm.cellClick(cell: board.squares[cellName]!)
+                vm.cellClick(cellName: cellName)
             }label: {
-                CellView(cell: board.squares[cellName]!)
+                CellView(cell: vm.board.squares[cellName]!)
             }
         }else{
-            CellView(cell: board.squares[cellName]!)
+            CellView(cell: vm.board.squares[cellName]!)
         }
     }
     
@@ -45,9 +45,9 @@ struct BoardView: View {
         let indexNumber = 9-number
         var cellName = ""
         if playingColor == "Black" {
-            cellName = board.letterList[index]+String(number)
+            cellName = vm.board.letterList[index]+String(number)
         } else {
-            cellName = board.letterList[letterIndex]+String(indexNumber)
+            cellName = vm.board.letterList[letterIndex]+String(indexNumber)
         }
         return cellName
     }

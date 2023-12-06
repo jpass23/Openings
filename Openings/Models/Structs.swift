@@ -11,6 +11,7 @@ import SwiftUI
 class Cell: ObservableObject {
     let isDarkSquare: Bool
     @Published var piece: String?
+    @Published var selected = false
     
     init(isDarkSquare: Bool, piece: String? = nil) {
         self.isDarkSquare = isDarkSquare
@@ -42,6 +43,9 @@ extension StringProtocol {
 extension Color {
     static let deepGreen = Color(red: 47/255, green: 109/255, blue: 64/255)
     static let royalPurple = Color(red: 113/255, green: 91/255, blue: 192/255)
+    func darken() -> Color{
+        //TODO: darken the color
+    }
 }
 
 class Board: ObservableObject {

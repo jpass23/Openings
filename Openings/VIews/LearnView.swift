@@ -41,7 +41,7 @@ struct LearnView: View {
                 Spacer()
             }
             Spacer()
-            BoardView(board: board, playingColor: $playingColor, clickable: false)
+            BoardView(vm: BoardViewModel(board: board), playingColor: $playingColor, clickable: false)
             Spacer()
             HStack {
                 Button {
@@ -68,11 +68,10 @@ struct LearnView: View {
             }
         }.sheet(isPresented: $showMenu) {} content: {
             OpeningListView(opening: $opening, showMenu: $showMenu)
-        }.environmentObject(board)
-            .onChange(of: self.opening) { _ in
-                self.currentMove = 0
-                self.board.resetBoard()
-            }
+        }.onChange(of: self.opening) { _ in
+            self.currentMove = 0
+            self.board.resetBoard()
+        }
     }
     
     func cycleMoves(_ direction: String) {
