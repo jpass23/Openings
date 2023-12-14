@@ -21,6 +21,9 @@
 		C048E07E29BEA7F2004932A1 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048E07D29BEA7F2004932A1 /* BoardViewModel.swift */; };
 		C089E9C0298AE21300398FE6 /* OpeningListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089E9BF298AE21300398FE6 /* OpeningListView.swift */; };
 		C089E9C2298AE29300398FE6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089E9C1298AE29300398FE6 /* Model.swift */; };
+		C0E4D42E2B138746006DD413 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E4D42D2B138746006DD413 /* ContactViewModel.swift */; };
+		C0E4D4302B14F83E006DD413 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E4D42F2B14F83E006DD413 /* ContactView.swift */; };
+		C0FBB06F2B2AB6C1003A6D43 /* move.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0FBB06E2B2AB6C1003A6D43 /* move.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		C048E07D29BEA7F2004932A1 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
 		C089E9BF298AE21300398FE6 /* OpeningListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningListView.swift; sourceTree = "<group>"; };
 		C089E9C1298AE29300398FE6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C0E4D42D2B138746006DD413 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		C0E4D42F2B14F83E006DD413 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		C0FBB06E2B2AB6C1003A6D43 /* move.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = move.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,7 @@
 			children = (
 				C03C6A892980EA32009937EC /* BoardView.swift */,
 				C03C6A8B29818BAB009937EC /* CellView.swift */,
+				C0E4D42F2B14F83E006DD413 /* ContactView.swift */,
 			);
 			path = HelperViews;
 			sourceTree = "<group>";
@@ -117,6 +124,7 @@
 			children = (
 				C03C6A8729808188009937EC /* Structs.swift */,
 				C089E9C1298AE29300398FE6 /* Model.swift */,
+				C0FBB06E2B2AB6C1003A6D43 /* move.mp3 */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				C048E07D29BEA7F2004932A1 /* BoardViewModel.swift */,
+				C0E4D42D2B138746006DD413 /* ContactViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -189,6 +198,7 @@
 			files = (
 				C03C6A7B297F9715009937EC /* Preview Assets.xcassets in Resources */,
 				C03C6A78297F9715009937EC /* Assets.xcassets in Resources */,
+				C0FBB06F2B2AB6C1003A6D43 /* move.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,8 +217,10 @@
 				C048E07C29BEA048004932A1 /* PracticeView.swift in Sources */,
 				C020DCCB29A06782002596E5 /* SettingsView.swift in Sources */,
 				C03C6A76297F9713009937EC /* ContentView.swift in Sources */,
+				C0E4D42E2B138746006DD413 /* ContactViewModel.swift in Sources */,
 				C03C6A74297F9713009937EC /* OpeningsApp.swift in Sources */,
 				C020DCC929A06746002596E5 /* LandingPageView.swift in Sources */,
+				C0E4D4302B14F83E006DD413 /* ContactView.swift in Sources */,
 				C089E9C2298AE29300398FE6 /* Model.swift in Sources */,
 				C048E07E29BEA7F2004932A1 /* BoardViewModel.swift in Sources */,
 			);
