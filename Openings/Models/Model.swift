@@ -94,4 +94,11 @@ class Model: ObservableObject {
             self.audioPlayer.play()
         }
     }
+    
+    func playHaptics(){
+        if self.haptics{
+            let impactMed = UIImpactFeedbackGenerator(style: .rigid)
+                impactMed.impactOccurred()
+        }
+    }
 }
