@@ -3,7 +3,7 @@
 //  Openings
 //
 //  Created by Jaden Passero on 1/24/23.
-// 
+//
 
 import Foundation
 import SwiftUI
@@ -32,6 +32,14 @@ class Cell: ObservableObject {
         }
         return false
     }
+    
+    func select() {
+        selected = true
+    }
+    
+    func deselect() {
+        selected = false
+    }
 }
 
 extension StringProtocol {
@@ -43,8 +51,15 @@ extension StringProtocol {
 extension Color {
     static let deepGreen = Color(red: 47/255, green: 109/255, blue: 64/255)
     static let royalPurple = Color(red: 113/255, green: 91/255, blue: 192/255)
-    func darken() -> Color{
-        //TODO: darken the color
+    func darken() -> Color {
+        if let components = cgColor?.components {
+            let r = components[0]
+            let g = components[1]
+            let b = components[2]
+            return Color(red: r-0.2, green: g-0.2, blue: b-0.2)
+        } else {
+            return Color(red: 0.7, green: 0.7, blue: 0.7)
+        }
     }
 }
 
@@ -54,7 +69,7 @@ class Board: ObservableObject {
 //    @Published var darkSquareColor = Color.royalPurple
     let letterList = ["A", "B", "C", "D", "E", "F", "G", "H"]
     
-    //Take parameter here to pass to initializeBoard(). This will allow the board to be initialized in different ways based on that information passed in. It will be passed in from BoardView which will have access to the model
+    // Take parameter here to pass to initializeBoard(). This will allow the board to be initialized in different ways based on that information passed in. It will be passed in from BoardView which will have access to the model
     init() {
         for index in 0..<8 {
             for number in 1..<9 {
@@ -136,6 +151,14 @@ class Board: ObservableObject {
                 }
             } else {
                 item.value.piece = nil
+            }
+        }
+    }
+    
+    func deselectAll() {
+        for index in 0..<8 {
+            for number in 1..<9 {
+                squares[letterList[index] + String(number)]!.deselect()
             }
         }
     }

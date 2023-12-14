@@ -38,7 +38,7 @@ extension Opening: Comparable {
     }
 }
 
-struct Move {
+struct Move: Equatable {
     var startSquare: String
     var endSquare: String
     var capturedPiece: String?

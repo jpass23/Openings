@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct BoardView: View {
-    @ObservedObject var vm: BoardViewModel
+    @ObservedObject var board: Board
     @EnvironmentObject var model: Model
     @Binding var playingColor: String
-
+    var onClick: ((String) -> Void)?
     let clickable: Bool
-    
-    
+
     var body: some View {
         Grid(horizontalSpacing: 0, verticalSpacing: 0) {
             ForEach(1..<9) { number in
@@ -26,28 +25,28 @@ struct BoardView: View {
             }
         }.border(model.darkSquareColor)
     }
-    
+
     @ViewBuilder
     func cell(cellName: String) -> some View {
-        if clickable{
-            Button{
-                vm.cellClick(cellName: cellName)
-            }label: {
-                CellView(cell: vm.board.squares[cellName]!)
+        if self.clickable {
+            Button {
+                onClick!(cellName)
+            } label: {
+                CellView(cell: self.board.squares[cellName]!)
             }
-        }else{
-            CellView(cell: vm.board.squares[cellName]!)
+        } else {
+            CellView(cell: self.board.squares[cellName]!)
         }
     }
-    
+
     func cellName(number: Int, letterIndex: Int) -> String {
         let index = 7-letterIndex
         let indexNumber = 9-number
         var cellName = ""
-        if playingColor == "Black" {
-            cellName = vm.board.letterList[index]+String(number)
+        if self.playingColor == "Black" {
+            cellName = self.board.letterList[index]+String(number)
         } else {
-            cellName = vm.board.letterList[letterIndex]+String(indexNumber)
+            cellName = self.board.letterList[letterIndex]+String(indexNumber)
         }
         return cellName
     }

@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct PracticeView: View {
-    @StateObject var board = Board()
+    @StateObject var board: Board
+    @StateObject var vm: PracticeViewModel
     @State var playingColor = "White"
-    @State var opening: Opening?
-    @State var showMenu = false
-    
+    @State var showMenu = true
+
+    init() {
+        let board = Board()
+        _board = StateObject(wrappedValue: board)
+        _vm = StateObject(wrappedValue: PracticeViewModel(board: board))
+    }
+
     var body: some View {
         VStack {
             Button {
                 showMenu.toggle()
             } label: {
                 HStack {
-                    if let opening = opening {
+                    if let opening = vm.opening {
                         Text(opening.name).font(.largeTitle).fontWeight(.bold)
                     } else {
                         Text("Select Opening").font(.title).fontWeight(.bold)
@@ -38,12 +44,21 @@ struct PracticeView: View {
                 Spacer()
             }
             Spacer()
-            BoardView(vm: BoardViewModel(board: board), playingColor: $playingColor, clickable: true)
+            BoardView(board: board, playingColor: $playingColor, onClick: vm.cellClick, clickable: true)
+                .disabled({
+                    if let _ = vm.successfullyComplete {
+                        return true
+                    } else if vm.opening == nil {
+                        return true
+                    }
+                    return false
+                }())
+            Spacer()
             Spacer()
             Spacer()
         }.sheet(isPresented: $showMenu) {} content: {
-            OpeningListView(opening: $opening, showMenu: $showMenu)
-        }.onChange(of: self.opening) { _ in
+            OpeningListView(opening: $vm.opening, showMenu: $showMenu)
+        }.onChange(of: vm.opening) { _ in
             self.board.resetBoard()
         }
     }
