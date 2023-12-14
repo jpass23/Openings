@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVKit
 
 struct Opening {
     let name: String
@@ -63,6 +64,9 @@ struct Move {
 class Model: ObservableObject {
     @Published var lightSquareColor = Color.white
     @Published var darkSquareColor = Color.deepGreen
+    var sounds = true
+    var haptics = true
+    let audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "move", ofType: "mp3")!))
     
     let sicilianClassic: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4", capturedPiece: "wpawn"), Move("F3", "D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3"), Move("B8", "C6")]
     let sicilianNajdorf: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4", capturedPiece: "wpawn"), Move("F3", "D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3"), Move("A7", "A6")]
@@ -82,5 +86,12 @@ class Model: ObservableObject {
     
     func clearData(){
         
+    }
+    
+    func playSound(){
+        if self.sounds{
+            self.audioPlayer.currentTime = 0
+            self.audioPlayer.play()
+        }
     }
 }

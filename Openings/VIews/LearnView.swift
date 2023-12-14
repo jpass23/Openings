@@ -76,6 +76,7 @@ struct LearnView: View {
     }
     
     func cycleMoves(_ direction: String) {
+        self.model.playSound()
         if direction == "forward" {
             if currentMove < opening?.sequence.count ?? 0 {
                 makeMove(move: opening?.sequence[currentMove], backwards: false)

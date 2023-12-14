@@ -15,6 +15,12 @@ struct SettingsView: View {
             Section("Appearence") {
                 ColorPicker("Dark Square Color", selection: $model.darkSquareColor)
             }
+            Section("Audio") {
+                Toggle("Sounds", isOn: $model.sounds)
+            }
+            Section("Feel") {
+                Toggle("Haptics", isOn: $model.haptics)
+            }
             Section("Danger Zone") {
                 Button("Clear All Data", role: .destructive) {
                     model.clearData()
