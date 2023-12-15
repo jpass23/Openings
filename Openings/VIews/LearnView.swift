@@ -10,12 +10,12 @@ import SwiftUI
 struct LearnView: View {
     @EnvironmentObject var model: Model
     @StateObject var board = Board()
-    
     @State var playingColor = "White"
     @State var opening: Opening?
-    @State var showMenu = false
+    @State var showMenu = true
     @State var currentMove = 0
-    
+    @State var completed: Bool?
+
     var body: some View {
         VStack {
             Button {
@@ -54,7 +54,7 @@ struct LearnView: View {
                         Image(systemName: "chevron.left")
                     }
                 }
-                
+
                 Button {
                     if opening != nil {
                         cycleMoves("forward")
@@ -68,13 +68,12 @@ struct LearnView: View {
             }
         }.sheet(isPresented: $showMenu) {} content: {
             OpeningListView(opening: $opening, showMenu: $showMenu)
-        }.environmentObject(board)
-            .onChange(of: self.opening) { _ in
-                self.currentMove = 0
-                self.board.resetBoard()
-            }
+        }.onChange(of: self.opening) { _ in
+            self.currentMove = 0
+            self.board.resetBoard()
+        }
     }
-    
+
     func cycleMoves(_ direction: String) {
         self.model.playSound()
         self.model.playHaptics()
@@ -90,7 +89,7 @@ struct LearnView: View {
             }
         }
     }
-    
+
     func makeMove(move: Move?, backwards: Bool) {
         if let move = move {
             if backwards {

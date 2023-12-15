@@ -20,7 +20,7 @@ struct CellView: View {
 
     var body: some View {
         ZStack {
-            Rectangle().frame(width: UIScreen.screenWidth/9, height: UIScreen.screenWidth/9).foregroundColor(cellColor)
+            Rectangle().frame(width: UIScreen.screenWidth/9, height: UIScreen.screenWidth/9).foregroundColor(cell.selected ? cellColor.darken(): cellColor)
             if let piece = cell.piece {
                 Image(piece).resizable().frame(width: UIScreen.screenWidth/10, height: UIScreen.screenWidth/10)
             }
