@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PracticeView: View {
+    @EnvironmentObject var model: Model
     @StateObject var board: Board
     @StateObject var vm: PracticeViewModel
     @State var playingColor = "White"
@@ -45,6 +46,7 @@ struct PracticeView: View {
             }
             Spacer()
             BoardView(board: board, playingColor: $playingColor, onClick: vm.cellClick, clickable: true)
+                .offset(x: vm.shake ? 10 : 0)
                 .disabled({
                     if let _ = vm.successfullyComplete {
                         return true
@@ -60,6 +62,13 @@ struct PracticeView: View {
             OpeningListView(opening: $vm.opening, showMenu: $showMenu)
         }.onChange(of: vm.opening) { _ in
             self.board.resetBoard()
+        }.onChange(of: vm.successfullyComplete) { _ in
+            if let success = vm.successfullyComplete{
+                if !success{
+                    model.wrongGuessSound()
+                    model.wrongGuessHaptics()
+                }
+            }
         }
     }
 }
