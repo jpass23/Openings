@@ -13,17 +13,49 @@ struct OpeningListView: View {
     @Binding var showMenu: Bool
 
     var body: some View {
-        List {
-            ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
-                // Section("Sicilian Variations") {
-                Button {
-                    opening = value
-                    showMenu = false
-                } label: {
-                    Text(key).foregroundColor(.primary)
+        NavigationStack{
+            List {
+                Section("Sicilian Variations") {
+                    ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
+                        if value.name == "Sicilian"{
+                            Button {
+                                opening = value
+                                showMenu = false
+                            } label: {
+                                Text(key).foregroundColor(.primary)
+                            }
+                        }
+                    }
                 }
-                // }
+                Section("Italian Game Variations") {
+                    ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
+                        if value.name == "Italian Game"{
+                            Button {
+                                opening = value
+                                showMenu = false
+                            } label: {
+                                Text(key).foregroundColor(.primary)
+                            }
+                        }
+                    }
+                }
+                Section("Others") {
+                    ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
+                        if let _ = value.variation{
+                            
+                        }else{
+                            Button {
+                                opening = value
+                                showMenu = false
+                            } label: {
+                                Text(key).foregroundColor(.primary)
+                            }
+                        }
+                    }
+                }
             }
+            .navigationTitle("Choose an opening")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
