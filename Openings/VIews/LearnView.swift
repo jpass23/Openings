@@ -31,10 +31,10 @@ struct LearnView: View {
                 }.foregroundColor(.primary)
             }
             Spacer()
-            Text("I play as:").font(.title)
+            Text("View as:").font(.title)
             HStack {
                 Spacer()
-                Picker("I play as...", selection: $playingColor) {
+                Picker("View as", selection: $playingColor) {
                     Text("White").tag("White")
                     Text("Black").tag("Black")
                 }.pickerStyle(.segmented)
@@ -52,6 +52,7 @@ struct LearnView: View {
                     ZStack {
                         Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
                         Image(systemName: "chevron.left")
+                            .foregroundColor(.primary)
                     }
                 }
 
@@ -63,6 +64,7 @@ struct LearnView: View {
                     ZStack {
                         Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
                         Image(systemName: "chevron.right")
+                            .foregroundColor(.primary)
                     }
                 }
             }

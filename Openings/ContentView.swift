@@ -16,7 +16,9 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             LandingPageView()
-        }.environmentObject(model)
+        }
+        .environmentObject(model)
+        .accentColor(.primary)
     }
 }
 

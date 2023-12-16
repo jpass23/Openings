@@ -23,7 +23,9 @@ struct BoardView: View {
                     }
                 }
             }
-        }.border(model.darkSquareColor, width: 5)
+        }
+        .padding(5)
+        .border(model.darkSquareColor, width: 5)
     }
 
     @ViewBuilder

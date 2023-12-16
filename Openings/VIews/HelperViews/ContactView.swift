@@ -15,37 +15,38 @@ struct ContactView: View {
     @State var message = "Message"
     @State var textColor = Color.secondary
     var body: some View {
-
-        Form{
-            Section{
-                TextField("Name", text: $name)
-            }
-            Section{
-                TextField("Email", text: $email)
-            }
-            Section{
-                TextField("Subject", text: $subject)
-            }
-            Section{
-                TextEditor(text: $message)
-                    .frame(height: 300)
-                    .foregroundColor(textColor)
-                    .onTapGesture {
-                        if message == "Message"{
-                            message = ""
-                        textColor = Color.primary
-                        }
-                    }
-            }
-            Button{
-                vm.sendEmail(name: name, email: email, subject: subject, message: message)
-            }label: {
-                HStack{
-                    Spacer()
-                    Text("Send").fontWeight(.bold)
-                    Spacer()
+        NavigationStack{
+            Form{
+                Section{
+                    TextField("Name", text: $name)
                 }
-            }
+                Section{
+                    TextField("Email", text: $email)
+                }
+                Section{
+                    TextField("Subject", text: $subject)
+                }
+                Section{
+                    TextEditor(text: $message)
+                        .frame(height: 300)
+                        .foregroundColor(textColor)
+                        .onTapGesture {
+                            if message == "Message"{
+                                message = ""
+                                textColor = Color.primary
+                            }
+                        }
+                }
+                Button{
+                    vm.sendEmail(name: name, email: email, subject: subject, message: message)
+                }label: {
+                    HStack{
+                        Spacer()
+                        Text("Send").fontWeight(.bold)
+                        Spacer()
+                    }
+                }
+            }.navigationTitle("Email me!")
         }
     }
 }

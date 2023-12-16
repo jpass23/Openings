@@ -9,58 +9,6 @@ import Foundation
 import SwiftUI
 import AVKit
 
-struct Opening {
-    let name: String
-    let variation: String?
-    var sequence: [Move]
-    
-    init(name: String, variation: String? = nil, sequence: [Move]) {
-        self.name = name
-        self.variation = variation
-        self.sequence = sequence
-    }
-}
-
-extension Opening: Comparable {
-    static func < (lhs: Opening, rhs: Opening) -> Bool {
-        if lhs.name < rhs.name {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    static func == (lhs: Opening, rhs: Opening) -> Bool {
-        if lhs.name == rhs.name, lhs.variation == rhs.variation {
-            return true
-        } else {
-            return false
-        }
-    }
-}
-
-struct Move: Equatable {
-    var startSquare: String
-    var endSquare: String
-    var capturedPiece: String?
-    var castled: Bool
-    // static let QSCastleWhite: (Move,Move) = (Move("A1", "D1"), Move("E1", "C1"))
-    // static let KSCastleWhite: (Move,Move) = (Move("H1", "F1"), Move("E1", "G1"))
-    
-    init(_ startSquare: String, _ endSquare: String, capturedPiece: String? = nil, castled: Bool = false) {
-        self.startSquare = startSquare
-        self.endSquare = endSquare
-        self.capturedPiece = capturedPiece
-        self.castled = castled
-    }
-    
-    mutating func flipMove() {
-        let localStart = self.startSquare
-        self.startSquare = self.endSquare
-        self.endSquare = localStart
-    }
-}
-
 class Model: ObservableObject {
     @Published var lightSquareColor = Color.white
     @Published var darkSquareColor = Color.deepGreen
@@ -87,15 +35,24 @@ class Model: ObservableObject {
     }
     
     func createList() {
-        self.openingsList["Sicilian: Classical"] = Opening(name: "Sicilian", variation: "Classical", sequence: self.sicilianClassic) // Key is displayed in list while opening.name is desplayed as title
+        // Key is displayed in list while opening.name is desplayed as title
+        self.openingsList["Sicilian: Classical"] = Opening(name: "Sicilian", variation: "Classical", sequence: self.sicilianClassic)
         self.openingsList["Sicilian: Najdorf"] = Opening(name: "Sicilian", variation: "Najdorf", sequence: self.sicilianNajdorf)
         self.openingsList["Ruy Lopez"] = Opening(name: "Ruy Lopez", sequence: self.ruyLopez)
         self.openingsList["Italian Game: Two Knights' Defence"] = Opening(name: "Italian Game", variation: "Two Knights' Defense", sequence: self.italianGameTwoKnights)
         self.openingsList["French Defense"] = Opening(name: "French Defense", sequence: self.frenchDefense)
     }
     
+    func reset(){
+        sounds = true
+        haptics = true
+        darkSquareColor = Color.deepGreen
+        createList()
+    }
+    
     func clearData(){
-        
+        //Clear from userDefualts
+        self.reset()
     }
     
     func moveSounds(){

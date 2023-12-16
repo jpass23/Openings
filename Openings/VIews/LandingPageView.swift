@@ -27,6 +27,7 @@ struct LandingPageView: View {
                     SettingsView()
                 } label: {
                     Image(systemName: "gear")
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                 }
             }
         }

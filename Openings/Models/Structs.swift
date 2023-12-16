@@ -8,6 +8,58 @@
 import Foundation
 import SwiftUI
 
+struct Opening {
+    let name: String
+    let variation: String?
+    var sequence: [Move]
+    
+    init(name: String, variation: String? = nil, sequence: [Move]) {
+        self.name = name
+        self.variation = variation
+        self.sequence = sequence
+    }
+}
+
+extension Opening: Comparable {
+    static func < (lhs: Opening, rhs: Opening) -> Bool {
+        if lhs.name < rhs.name {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func == (lhs: Opening, rhs: Opening) -> Bool {
+        if lhs.name == rhs.name, lhs.variation == rhs.variation {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+struct Move: Equatable {
+    var startSquare: String
+    var endSquare: String
+    var capturedPiece: String?
+    var castled: Bool
+    // static let QSCastleWhite: (Move,Move) = (Move("A1", "D1"), Move("E1", "C1"))
+    // static let KSCastleWhite: (Move,Move) = (Move("H1", "F1"), Move("E1", "G1"))
+    
+    init(_ startSquare: String, _ endSquare: String, capturedPiece: String? = nil, castled: Bool = false) {
+        self.startSquare = startSquare
+        self.endSquare = endSquare
+        self.capturedPiece = capturedPiece
+        self.castled = castled
+    }
+    
+    mutating func flipMove() {
+        let localStart = self.startSquare
+        self.startSquare = self.endSquare
+        self.endSquare = localStart
+    }
+}
+
 class Cell: ObservableObject {
     let isDarkSquare: Bool
     @Published var piece: String?
