@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LandingPageView: View {
+    @EnvironmentObject var model: Model
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         VStack {
             Spacer()
@@ -15,16 +18,8 @@ struct LandingPageView: View {
             Spacer()
             Image(systemName: "checkerboard.rectangle").resizable().frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/2.5)
             Spacer()
-            Group {
-                NavigationLink("Learn") {
-                    LearnView()
-                }
-                Spacer()
-                NavigationLink("Practice") {
-                    PracticeView()
-                }
-            }.buttonStyle(.bordered)
-                .controlSize(.large)
+            NavigationButton(title: "Learn").padding()
+            NavigationButton(title: "Practice").padding()
             Spacer()
         }.toolbar {
             ToolbarItem {
@@ -34,6 +29,30 @@ struct LandingPageView: View {
                     Image(systemName: "gear")
                 }
             }
+        }
+    }
+
+    func NavigationButton(title: String) -> some View {
+        let gradient = LinearGradient(colors: [.primary, model.darkSquareColor],
+                                      startPoint: .topLeading,
+                                      endPoint: .bottomTrailing)
+        return NavigationLink {
+            if title == "Learn" {
+                LearnView()
+            } else {
+                PracticeView()
+            }
+        } label: {
+            Text(title)
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundStyle(colorScheme == .dark ? .white : .black)
+                .padding()
+                .background {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(gradient, lineWidth: 3)
+                        .saturation(colorScheme == .dark ? 1 : 4)
+                }
         }
     }
 }
