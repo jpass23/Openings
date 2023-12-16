@@ -98,17 +98,28 @@ class Model: ObservableObject {
         
     }
     
-    func playSound(){
+    func moveSounds(){
         if self.sounds{
             self.audioPlayer.currentTime = 0
             self.audioPlayer.play()
         }
     }
     
-    func playHaptics(){
+    func moveHaptics(){
         if self.haptics{
             let impactMed = UIImpactFeedbackGenerator(style: .rigid)
                 impactMed.impactOccurred()
         }
+    }
+    
+    func wrongGuessHaptics(){
+        if self.haptics{
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.error)
+        }
+    }
+    
+    func wrongGuessSound(){
+        
     }
 }

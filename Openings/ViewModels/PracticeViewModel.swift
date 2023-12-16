@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
 class PracticeViewModel: ObservableObject {
     @Published var successfullyComplete: Bool?
     @Published var opening: Opening?
+    @Published var shake = false
     var board: Board
     var moveList = [Move]()
     var selectedPiece: String?
@@ -54,6 +56,14 @@ class PracticeViewModel: ObservableObject {
             self.moveList.append(move)
             self.makeMove(move: move)
             print(move)
+        }
+        if let success = self.successfullyCompleted(){
+            if !success{
+                shake = true
+                withAnimation(Animation.spring(response: 0.17, dampingFraction: 0.17, blendDuration: 0)) {
+                    shake = false
+                }
+            }
         }
         self.successfullyComplete = self.successfullyCompleted()
     }
