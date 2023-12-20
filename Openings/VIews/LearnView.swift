@@ -92,40 +92,50 @@ struct LearnView: View {
         }
     }
 
-    func makeMove(move: Move?, backwards: Bool) {
+    func makeMove(move: Move?, backwards: Bool = false) {
         if let move = move {
             if backwards {
-                let piece = board.squares[move.endSquare]!.piece!
-                board.squares[move.endSquare]!.piece = nil
-                board.squares[move.startSquare]!.piece = piece
-                if move.capturedPiece != nil {
-                    board.squares[move.endSquare]!.piece = move.capturedPiece
-                }
                 if move.castled {
-                    if move.endSquare == "G1" { // Kinside white
+                    if move.endSquare == "H1" { // Kinside white
                         makeMove(move: Move("H1", "F1"), backwards: true)
-                    } else if move.endSquare == "C1" { // Queenside white
+                        makeMove(move: Move("E1", "G1"), backwards: true)
+                    } else if move.endSquare == "A1" { // Queenside white
                         makeMove(move: Move("A1", "D1"), backwards: true)
+                        makeMove(move: Move("E1", "C1"), backwards: true)
                     } else if move.endSquare == "G8" { // Kingside black
                         makeMove(move: Move("H8", "F8"), backwards: true)
+                        makeMove(move: Move("E8", "G8"), backwards: true)
                     } else if move.endSquare == "C8" { // Queenside black
                         makeMove(move: Move("A8", "D8"), backwards: true)
+                        makeMove(move: Move("E8", "C8"), backwards: true)
+                    }
+                }else{
+                    let piece = board.squares[move.endSquare]!.piece!
+                    board.squares[move.endSquare]!.piece = nil
+                    board.squares[move.startSquare]!.piece = piece
+                    if move.capturedPiece != nil {
+                        board.squares[move.endSquare]!.piece = move.capturedPiece
                     }
                 }
             } else { // forward
-                let piece = board.squares[move.startSquare]!.piece!
-                board.squares[move.startSquare]!.piece = nil
-                board.squares[move.endSquare]!.piece = piece
                 if move.castled {
-                    if move.endSquare == "G1" { // Kinside white
-                        makeMove(move: Move("H1", "F1"), backwards: false)
-                    } else if move.endSquare == "C1" { // Queenside white
-                        makeMove(move: Move("A1", "D1"), backwards: false)
+                    if move.endSquare == "H1" { // Kinside white
+                        makeMove(move: Move("H1", "F1"))
+                        self.makeMove(move: Move("E1", "G1"))
+                    } else if move.endSquare == "A1" { // Queenside white
+                        makeMove(move: Move("A1", "D1"))
+                        self.makeMove(move: Move("E1", "C1"))
                     } else if move.endSquare == "G8" { // Kingside black
-                        makeMove(move: Move("H8", "F8"), backwards: false)
+                        makeMove(move: Move("H8", "F8"))
+                        self.makeMove(move: Move("E8", "G8"))
                     } else if move.endSquare == "C8" { // Queenside black
-                        makeMove(move: Move("A8", "D8"), backwards: false)
+                        makeMove(move: Move("A8", "D8"))
+                        self.makeMove(move: Move("E8", "C8"))
                     }
+                }else{
+                    let piece = board.squares[move.startSquare]!.piece!
+                    board.squares[move.startSquare]!.piece = nil
+                    board.squares[move.endSquare]!.piece = piece
                 }
             }
         }

@@ -18,7 +18,7 @@ class Model: ObservableObject {
     
     let sicilianClassic: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4", capturedPiece: "wpawn"), Move("F3", "D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3"), Move("B8", "C6")]
     let sicilianNajdorf: [Move] = [Move("E2", "E4"), Move("C7", "C5"), Move("G1", "F3"), Move("D7", "D6"), Move("D2", "D4"), Move("C5", "D4", capturedPiece: "wpawn"), Move("F3", "D4", capturedPiece: "bpawn"), Move("G8", "F6"), Move("B1", "C3"), Move("A7", "A6")]
-    let ruyLopez: [Move] = [Move("E2", "E4"), Move("E7", "E5"), Move("G1", "F3"), Move("B8", "C6"), Move("F1", "B5"), Move("A7", "A6"), Move("B5", "A4"), Move("G8", "F6"), Move("E1", "G1", castled: true)]
+    let ruyLopez: [Move] = [Move("E2", "E4"), Move("E7", "E5"), Move("G1", "F3"), Move("B8", "C6"), Move("F1", "B5"), Move("A7", "A6"), Move("B5", "A4"), Move("G8", "F6"), Move("E1", "H1", castled: true)]
     let italianGameTwoKnights: [Move] = [Move("E2", "E4"), Move("E7", "E5"), Move("G1", "F3"), Move("B8", "C6"), Move("F1", "C4"), Move("G8", "F6")]
     let frenchDefense: [Move] = [Move("E2", "E4"), Move("E7", "E6"), Move("D2", "D4"), Move("D7", "D5")]
     //English
@@ -77,6 +77,14 @@ class Model: ObservableObject {
     }
     
     func wrongGuessSound(){
+        
+    }
+    
+    func correctGuessHaptics(){
+        
+    }
+    
+    func correctGuessSounds(){
         
     }
 }

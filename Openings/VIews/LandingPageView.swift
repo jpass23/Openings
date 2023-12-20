@@ -52,7 +52,7 @@ struct LandingPageView: View {
                 .background {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(gradient, lineWidth: 3)
-                        .saturation(colorScheme == .dark ? 1 : 4)
+                        .saturation(colorScheme == .dark ? 1 : 3)
                 }
         }
     }

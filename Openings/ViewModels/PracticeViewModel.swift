@@ -54,8 +54,8 @@ class PracticeViewModel: ObservableObject {
         }
         if let move = move {
             self.moveList.append(move)
+            print(moveList)
             self.makeMove(move: move)
-            print(move)
         }
         if let success = self.successfullyCompleted(){
             if !success{
@@ -68,7 +68,7 @@ class PracticeViewModel: ObservableObject {
         self.successfullyComplete = self.successfullyCompleted()
     }
     
-    func successfullyCompleted() -> Bool? {
+    private func successfullyCompleted() -> Bool? {
         let length = self.moveList.count
         if Array(self.opening!.sequence[0 ..< length]) == self.moveList {
             if self.opening!.sequence.count == length {
@@ -80,26 +80,89 @@ class PracticeViewModel: ObservableObject {
         }
     }
     
-    func makeMove(move: Move?) {
+    func resetBoard(){
+        self.board.resetBoard()
+        self.successfullyComplete = nil
+        self.moveList = [Move]()
+        self.selectedPiece = nil
+        self.startCellName = nil
+    }
+    
+    func undoMove(){
+        self.makeMove(move: self.moveList.last, backwards: true)
+        self.moveList.removeLast()
+        self.successfullyComplete = nil
+    }
+    
+//    func makeMove(move: Move?) {
+//        if let move = move {
+//            let piece = self.board.squares[move.startSquare]!.piece!
+//            if move.castled {
+//                if move.endSquare == "H1" { // Kinside white
+//                    self.makeMove(move: Move("H1", "F1"))
+//                    self.makeMove(move: Move("E1", "G1"))
+//                } else if move.endSquare == "A1" { // Queenside white
+//                    self.makeMove(move: Move("A1", "D1"))
+//                    self.makeMove(move: Move("E1", "C1"))
+//                } else if move.endSquare == "H8" { // Kingside black
+//                    self.makeMove(move: Move("H8", "F8"))
+//                    self.makeMove(move: Move("E8", "G8"))
+//                } else if move.endSquare == "A8" { // Queenside black
+//                    self.makeMove(move: Move("A8", "D8"))
+//                    self.makeMove(move: Move("E8", "C8"))
+//                }
+//            } else {
+//                self.board.squares[move.startSquare]!.piece = nil
+//                self.board.squares[move.endSquare]!.piece = piece
+//            }
+//        }
+//    }
+    
+    func makeMove(move: Move?, backwards: Bool = false) {
         if let move = move {
-            let piece = self.board.squares[move.startSquare]!.piece!
-            if move.castled {
-                if move.endSquare == "H1" { // Kinside white
-                    self.makeMove(move: Move("H1", "F1"))
-                    self.makeMove(move: Move("E1", "G1"))
-                } else if move.endSquare == "A1" { // Queenside white
-                    self.makeMove(move: Move("A1", "D1"))
-                    self.makeMove(move: Move("E1", "C1"))
-                } else if move.endSquare == "H8" { // Kingside black
-                    self.makeMove(move: Move("H8", "F8"))
-                    self.makeMove(move: Move("E8", "G8"))
-                } else if move.endSquare == "A8" { // Queenside black
-                    self.makeMove(move: Move("A8", "D8"))
-                    self.makeMove(move: Move("E8", "C8"))
+            if backwards {
+                if move.castled {
+                    if move.endSquare == "H1" { // Kinside white
+                        makeMove(move: Move("H1", "F1"), backwards: true)
+                        makeMove(move: Move("E1", "G1"), backwards: true)
+                    } else if move.endSquare == "A1" { // Queenside white
+                        makeMove(move: Move("A1", "D1"), backwards: true)
+                        makeMove(move: Move("E1", "C1"), backwards: true)
+                    } else if move.endSquare == "G8" { // Kingside black
+                        makeMove(move: Move("H8", "F8"), backwards: true)
+                        makeMove(move: Move("E8", "G8"), backwards: true)
+                    } else if move.endSquare == "C8" { // Queenside black
+                        makeMove(move: Move("A8", "D8"), backwards: true)
+                        makeMove(move: Move("E8", "C8"), backwards: true)
+                    }
+                }else{
+                    let piece = board.squares[move.endSquare]!.piece!
+                    board.squares[move.endSquare]!.piece = nil
+                    board.squares[move.startSquare]!.piece = piece
+                    if move.capturedPiece != nil {
+                        board.squares[move.endSquare]!.piece = move.capturedPiece
+                    }
                 }
-            } else {
-                self.board.squares[move.startSquare]!.piece = nil
-                self.board.squares[move.endSquare]!.piece = piece
+            } else { // forward
+                if move.castled {
+                    if move.endSquare == "H1" { // Kinside white
+                        makeMove(move: Move("H1", "F1"))
+                        self.makeMove(move: Move("E1", "G1"))
+                    } else if move.endSquare == "A1" { // Queenside white
+                        makeMove(move: Move("A1", "D1"))
+                        self.makeMove(move: Move("E1", "C1"))
+                    } else if move.endSquare == "G8" { // Kingside black
+                        makeMove(move: Move("H8", "F8"))
+                        self.makeMove(move: Move("E8", "G8"))
+                    } else if move.endSquare == "C8" { // Queenside black
+                        makeMove(move: Move("A8", "D8"))
+                        self.makeMove(move: Move("E8", "C8"))
+                    }
+                }else{
+                    let piece = board.squares[move.startSquare]!.piece!
+                    board.squares[move.startSquare]!.piece = nil
+                    board.squares[move.endSquare]!.piece = piece
+                }
             }
         }
     }
