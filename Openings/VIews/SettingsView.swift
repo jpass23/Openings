@@ -10,10 +10,14 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var model: Model
     @State var showSheet = false
+    @State var showConfirmation = false
     var body: some View {
         Form {
             Section("Appearence") {
                 ColorPicker("Dark Square Color", selection: $model.darkSquareColor)
+                Button("Reset to default"){
+                    model.darkSquareColor = Color.deepGreen
+                }.foregroundStyle(.blue)
             }
             Section("Audio") {
                 Toggle("Sounds", isOn: $model.sounds)
@@ -23,7 +27,12 @@ struct SettingsView: View {
             }
             Section("Danger Zone") {
                 Button("Clear All Data", role: .destructive) {
-                    model.clearData()
+                    showConfirmation.toggle()
+                }.confirmationDialog("Are you sure", isPresented: $showConfirmation) {
+                    Button("Yes, clear data", role: .destructive) { model.clearData()}
+                    Button("Cancel", role: .cancel) { }
+                } message: {
+                    Text("This action cannot be undone")
                 }
             }
         }
@@ -34,6 +43,7 @@ struct SettingsView: View {
                 showSheet.toggle()
             } label: {
                 Text("here").padding(-5)
+                    .foregroundStyle(.blue)
             }
         }.font(.caption)
             .sheet(isPresented: $showSheet) {
