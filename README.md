@@ -1,5 +1,5 @@
-# Openings (incomplete)
-An app for studying chess openings and learning them by name. This is a **WORK IN PROGRESS** and still needs a lot before I would consider even version 1 to be complete.
+# Openings (Release soon!)
+An app for studying chess openings and learning them by name. This is a **WORK IN PROGRESS** and still needs a bit of work before I would consider version 1 to be complete. Releasing it on the app store soon after some testing.
 
 ## Description
 
