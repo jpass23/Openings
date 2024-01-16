@@ -33,5 +33,7 @@ This app uses basic MVVM structure. However, all of my models are stored in a fi
     - Pull the list of openings out into an external database so that these don't clog up the swift file
 2. Animate the moves. Currently the pieces just disappear from their current square and appear at the new square. I would like to use something like the GeometryReader to animate the path inbetween.
 3. Finish fleshing out the Practice section. Add sounds and make the computer play the opposing moves.
-4. Add more customizable settings.
+4. Add a 'mastery' property to openings that can be reached with 3 successful practices of that opening.
+5. Finish the 'contact me'
+6. Add more customizable settings.
 
