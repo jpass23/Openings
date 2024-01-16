@@ -29,9 +29,9 @@ This app uses basic MVVM structure. However, all of my models are stored in a fi
 
 ## Future Plans
 
-1. Add more openings. There are currently only 3 in the app but there are over 1000 that have been named
+1. Add more openings. There are currently only 5 in the app but there are over 1000 that have been named
     - Pull the list of openings out into an external database so that these don't clog up the swift file
-2. Animate the moves. Currently the pieces just disappear from their current square and appear at the new square. I would like to use the GeometryReader to animate the path inbetween.
-3. Flesh out the Practice section. There is almost nothing done here.
-4. Add more customizable settings. Currently the only setting is board color.
+2. Animate the moves. Currently the pieces just disappear from their current square and appear at the new square. I would like to use something like the GeometryReader to animate the path inbetween.
+3. Finish fleshing out the Practice section. Add sounds and make the computer play the opposing moves.
+4. Add more customizable settings.
 
