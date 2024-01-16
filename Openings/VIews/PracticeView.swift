@@ -97,6 +97,14 @@ struct PracticeView: View {
                     }
                 }
             }.padding(30)
+        }.toolbar{
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink{
+                    PracticeInfoView()
+                }label: {
+                    Image(systemName: "info.circle")
+                }
+            }
         }
     }
     
