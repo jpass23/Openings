@@ -15,6 +15,7 @@ struct LearnView: View {
     @State var showMenu = true
     @State var currentMove = 0
     @State var completed: Bool?
+    @State var showPopover = false
 
     var body: some View {
         VStack {
@@ -45,35 +46,69 @@ struct LearnView: View {
             Spacer()
             HStack {
                 Button {
-                    if opening != nil {
-                        cycleMoves("backward")
-                    }
+                    cycleMoves("backward")
                 } label: {
                     ZStack {
                         Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
-                        Image(systemName: "chevron.left")
+                        Image(systemName: bkdDisabled ? "arrowshape.backward" : "arrowshape.backward.fill")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/6,height: UIScreen.screenWidth/8)
                             .foregroundColor(.primary)
                     }
-                }
+                }.disabled(bkdDisabled)
 
                 Button {
-                    if opening != nil {
-                        cycleMoves("forward")
-                    }
+                    cycleMoves("forward")
                 } label: {
                     ZStack {
                         Rectangle().foregroundColor(.clear).frame(width: UIScreen.screenWidth/2, height: UIScreen.screenWidth/3)
-                        Image(systemName: "chevron.right")
+                        Image(systemName: fwdDisabled ? "arrowshape.forward": "arrowshape.forward.fill")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/6,height: UIScreen.screenWidth/8)
                             .foregroundColor(.primary)
                     }
-                }
+                }.disabled(fwdDisabled)
             }
         }.sheet(isPresented: $showMenu) {} content: {
             OpeningListView(opening: $opening, showMenu: $showMenu)
         }.onChange(of: self.opening) { _ in
             self.currentMove = 0
             self.board.resetBoard()
+        }.toolbar{
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showPopover.toggle()
+                }label: {
+                    Image(systemName: "info.circle")
+                }
+                .popover(isPresented: $showPopover, content: {
+                    if #available(iOS 16.4, *) {
+                        LearnInfoView()
+                            .presentationCompactAdaptation(.popover)
+                            .frame(width: 300, height: 370)
+                    } else {
+                        LearnInfoView()
+                    }
+                })
+            }
         }
+    }
+    
+    var fwdDisabled: Bool{
+        if let opening = opening{
+            if currentMove < opening.sequence.count{
+                return false
+            }
+        }
+        return true
+    }
+    var bkdDisabled: Bool{
+        if let _ = opening{
+            if currentMove > 0{
+                return false
+            }
+        }
+        return true
     }
 
     func cycleMoves(_ direction: String) {

@@ -22,7 +22,7 @@ struct LandingPageView: View {
             NavigationButton(title: "Practice").padding()
             Spacer()
         }.toolbar {
-            ToolbarItem {
+            ToolbarItem (placement: .topBarTrailing){
                 NavigationLink {
                     SettingsView()
                 } label: {
@@ -58,8 +58,8 @@ struct LandingPageView: View {
     }
 }
 
-struct LandingPageView_Previews: PreviewProvider {
-    static var previews: some View {
-        LandingPageView()
-    }
-}
+//struct LandingPageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LandingPageView()
+//    }
+//}
