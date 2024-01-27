@@ -15,6 +15,7 @@ struct LearnView: View {
     @State var showMenu = true
     @State var currentMove = 0
     @State var completed: Bool?
+    @State var showPopover = false
 
     var body: some View {
         VStack {
@@ -75,11 +76,20 @@ struct LearnView: View {
             self.board.resetBoard()
         }.toolbar{
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink{
-                    LearnInfoView()
+                Button {
+                    showPopover.toggle()
                 }label: {
                     Image(systemName: "info.circle")
                 }
+                .popover(isPresented: $showPopover, content: {
+                    if #available(iOS 16.4, *) {
+                        LearnInfoView()
+                            .presentationCompactAdaptation(.popover)
+                            .frame(width: 300, height: 370)
+                    } else {
+                        LearnInfoView()
+                    }
+                })
             }
         }
     }
@@ -93,7 +103,7 @@ struct LearnView: View {
         return true
     }
     var bkdDisabled: Bool{
-        if let opening = opening{
+        if let _ = opening{
             if currentMove > 0{
                 return false
             }

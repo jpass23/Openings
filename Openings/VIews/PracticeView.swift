@@ -14,6 +14,7 @@ struct PracticeView: View {
     @StateObject var vm: PracticeViewModel
     @State var playingColor = "White"
     @State var showMenu = true
+    @State var showPopover = false
 
     init() {
         let board = Board()
@@ -99,11 +100,20 @@ struct PracticeView: View {
             }.padding(30)
         }.toolbar{
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink{
-                    PracticeInfoView()
+                Button {
+                    showPopover.toggle()
                 }label: {
                     Image(systemName: "info.circle")
                 }
+                .popover(isPresented: $showPopover, content: {
+                    if #available(iOS 16.4, *) {
+                        PracticeInfoView()
+                            .presentationCompactAdaptation(.popover)
+                            .frame(width: 300, height: 370)
+                    } else {
+                        PracticeInfoView()
+                    }
+                })
             }
         }
     }
