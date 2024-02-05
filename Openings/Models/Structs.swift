@@ -115,6 +115,12 @@ extension Color {
     }
 }
 
+extension String {
+    func isSameColor(as pieceName: String) -> Bool {
+        return self[0] == pieceName[0]
+    }
+}
+
 class Board: ObservableObject {
     @Published var squares = [String: Cell]()
 //    @Published var lightSquareColor = Color.white
@@ -205,6 +211,7 @@ class Board: ObservableObject {
                 item.value.piece = nil
             }
         }
+        self.deselectAll()
     }
     
     func deselectAll() {
