@@ -32,6 +32,9 @@ struct BoardView: View {
     func cell(cellName: String) -> some View {
         if self.clickable {
             Button {
+//                if (playingColor == "White" && board.squares[cellName]?.piece?[0] == "b") || (playingColor == "Black" && board.squares[cellName]?.piece?[0] == "w"){
+//                    return
+//                }
                 onClick!(cellName)
             } label: {
                 CellView(cell: self.board.squares[cellName]!)

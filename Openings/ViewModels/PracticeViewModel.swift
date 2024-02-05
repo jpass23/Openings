@@ -13,12 +13,18 @@ class PracticeViewModel: ObservableObject {
     @Published var opening: Opening?
     @Published var shake = false
     var board: Board
+    var model: Model?
     var moveList = [Move]()
     var selectedPiece: String?
     var startCellName: String?
+    @Published var gameStarted = false
 
     init(board: Board) {
         self.board = board
+    }
+    
+    func setup(model: Model){
+        self.model = model
     }
     
     func cellClick(cellName: String) {
@@ -53,9 +59,16 @@ class PracticeViewModel: ObservableObject {
             self.board.squares[cellName]!.select()
         }
         if let move = move {
+            if board.squares[move.startSquare]!.piece!.isSameColor(as: board.squares[move.endSquare]!.piece ?? " ") {
+                return
+            }
             self.moveList.append(move)
-            print(moveList)
             self.makeMove(move: move)
+            if self.successfullyCompleted() == nil{
+                DispatchQueue.main.asyncAfter(deadline: .now() + model!.cpuDelay){
+                    self.autoMove()
+                }
+            }
         }
         if let success = self.successfullyCompleted(){
             if !success{
@@ -65,7 +78,6 @@ class PracticeViewModel: ObservableObject {
                 }
             }
         }
-        self.successfullyComplete = self.successfullyCompleted()
     }
     
     private func successfullyCompleted() -> Bool? {
@@ -80,12 +92,26 @@ class PracticeViewModel: ObservableObject {
         }
     }
     
-    func resetBoard(){
+    private func autoMove() {
+        let move = self.opening!.sequence[self.moveList.count]
+        self.moveList.append(move)
+        self.makeMove(move: move)
+    }
+    
+    func startGame(for color: String){
+        self.gameStarted = true
+        if color == "Black"{
+            self.autoMove()
+        }
+    }
+    
+    func resetRound(){
         self.board.resetBoard()
         self.successfullyComplete = nil
         self.moveList = [Move]()
         self.selectedPiece = nil
         self.startCellName = nil
+        self.gameStarted = false
     }
     
     func undoMove(){
@@ -119,6 +145,9 @@ class PracticeViewModel: ObservableObject {
 //    }
     
     func makeMove(move: Move?, backwards: Bool = false) {
+        self.gameStarted = true
+        self.model!.moveSounds()
+        self.model!.moveHaptics()
         if let move = move {
             if backwards {
                 if move.castled {
@@ -165,5 +194,6 @@ class PracticeViewModel: ObservableObject {
                 }
             }
         }
+        self.successfullyComplete = self.successfullyCompleted()
     }
 }
