@@ -12,6 +12,7 @@ import AVKit
 class Model: ObservableObject {
     @Published var lightSquareColor = Color.white
     @Published var darkSquareColor = Color.deepGreen
+    private var defaultsSet = UserDefaults.standard.bool(forKey: "defaultsSet")
     var sounds = true
     var haptics = true
     @Published var cpuDelay = 0.8
@@ -32,7 +33,30 @@ class Model: ObservableObject {
     var openingsList: [String: Opening] = .init()
     
     init() {
+        if !defaultsSet {
+            setDefualts()
+        }
+        sounds = UserDefaults.standard.bool(forKey: "sounds")
+        haptics = UserDefaults.standard.bool(forKey: "haptics")
+        cpuDelay = UserDefaults.standard.double(forKey: "delay")
+        darkSquareColor = Color(hex: UserDefaults.standard.integer(forKey: "darkSquareColor"))
         self.createList()
+    }
+    
+    func setDefualts() {
+        //only runs the VERY FIRST time the app is loaded. It sets the default values if there is nothing in userDefaults
+        UserDefaults.standard.set(true, forKey: "sounds")
+        UserDefaults.standard.set(true, forKey: "haptics")
+        UserDefaults.standard.set(0.8, forKey: "delay")
+        UserDefaults.standard.set(true, forKey: "defaultsSet")
+        UserDefaults.standard.set(Color.deepGreen.toHex(), forKey: "darkSquareColor")
+    }
+    
+    func updateUserDefaults() {
+        UserDefaults.standard.set(sounds, forKey: "sounds")
+        UserDefaults.standard.set(haptics, forKey: "haptics")
+        UserDefaults.standard.set(cpuDelay, forKey: "delay")
+        UserDefaults.standard.set(darkSquareColor.toHex(), forKey: "darkSquareColor")
     }
     
     func createList() {
@@ -47,12 +71,14 @@ class Model: ObservableObject {
     func reset(){
         sounds = true
         haptics = true
+        cpuDelay = 0.8
         darkSquareColor = Color.deepGreen
         createList()
     }
     
     func clearData(){
         //Clear from userDefualts
+        setDefualts()
         self.reset()
     }
     

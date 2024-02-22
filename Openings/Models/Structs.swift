@@ -113,6 +113,31 @@ extension Color {
             return Color(red: 0.7, green: 0.7, blue: 0.7)
         }
     }
+    
+    func toHex() -> Int {
+        var hexVal = 0x000000
+        if let components = cgColor?.components {
+            let r = Int(components[0] * 255)
+            let g = Int(components[1] * 255)
+            let b = Int(components[2] * 255)
+            
+            let hexR = ((r<<16) & 0xFF0000)
+            let hexG = ((g<<8) & 0x00FF00)
+            let hexB = (b & 0x0000FF)
+            hexVal = hexR | hexG | hexB
+        }
+        return hexVal
+    }
+    
+    init(hex: Int, alpha: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xFF) / 255,
+            green: Double((hex >> 08) & 0xFF) / 255,
+            blue: Double((hex >> 00) & 0xFF) / 255,
+            opacity: alpha
+        )
+    }
 }
 
 extension String {
