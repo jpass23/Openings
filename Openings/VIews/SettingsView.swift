@@ -41,17 +41,20 @@ struct SettingsView: View {
             } footer: {
                 Text("How much time the cpu waits before playing you back in Practice mode")
             }
-//            Section("Danger Zone") {
-//                Button("Clear All Data", role: .destructive) {
-//                    showConfirmation.toggle()
-//                }.confirmationDialog("Are you sure", isPresented: $showConfirmation) {
-//                    Button("Yes, clear data", role: .destructive) { model.clearData()}
-//                    Button("Cancel", role: .cancel) { }
-//                } message: {
-//                    Text("This action cannot be undone")
-//                }
-//            }
+            Section("Danger Zone") {
+                Button("Clear All Data", role: .destructive) {
+                    showConfirmation.toggle()
+                }.confirmationDialog("Are you sure", isPresented: $showConfirmation) {
+                    Button("Yes, clear data", role: .destructive) { model.clearData()}
+                    Button("Cancel", role: .cancel) { }
+                } message: {
+                    Text("This action cannot be undone")
+                }
+            }
         }
+        .onDisappear(perform: {
+            model.updateUserDefaults()
+        })
         Text("Found a mistake? Have a suggestion?")
         HStack {
             Text("Contact developer")
