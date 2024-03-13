@@ -39,17 +39,35 @@ struct SettingsView: View {
             } header: {
                 Text("Other")
             } footer: {
-                Text("How much time the cpu waits before playing you back in Practice mode")
+                Text("How much time the cpu waits before playing you back in Practice Mode")
             }
             Section("Danger Zone") {
-                Button("Clear All Data", role: .destructive) {
+                Button("Reset All", role: .destructive) {
                     showConfirmation.toggle()
                 }.confirmationDialog("Are you sure", isPresented: $showConfirmation) {
-                    Button("Yes, clear data", role: .destructive) { model.clearData()}
+                    Button("Yes, Reset", role: .destructive) { model.clearData()}
                     Button("Cancel", role: .cancel) { }
                 } message: {
-                    Text("This action cannot be undone")
+                    Text("Resets all settings to defaults. This action cannot be undone")
                 }
+            }
+            
+            Section {
+                
+            }header: {
+                Text("Credits")
+            } footer: {
+                VStack{
+                    HStack{
+                        Text("Made by ")
+                        Link("Jaden Passero", destination: URL(string: "https://www.instagram.com/jpass.code?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")!).foregroundColor(.blue)
+                    }
+                    HStack{
+                        Text("App icon by ")
+                        Link("Sketchonic Design", destination: URL(string: "https://www.sketchonicdesign.com/")!).foregroundColor(.blue)
+                    }
+                }
+                .font(.caption)
             }
         }
         .onDisappear(perform: {
