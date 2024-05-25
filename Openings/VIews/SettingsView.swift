@@ -39,7 +39,7 @@ struct SettingsView: View {
             } header: {
                 Text("Other")
             } footer: {
-                Text("How much time the cpu waits before playing you back in Practice Mode")
+                Text("How much time the cpu waits before responding in Practice Mode")
             }
             Section("Danger Zone") {
                 Button("Reset All", role: .destructive) {
