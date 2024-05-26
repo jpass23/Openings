@@ -19,11 +19,15 @@
 		C03C6A8C29818BAB009937EC /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8B29818BAB009937EC /* CellView.swift */; };
 		C03C6A8E2981905E009937EC /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03C6A8D2981905E009937EC /* LearnView.swift */; };
 		C048E07C29BEA048004932A1 /* PracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048E07B29BEA048004932A1 /* PracticeView.swift */; };
+		C064D4AB2BD6B4EC0086D4F6 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C064D4AA2BD6B4EC0086D4F6 /* Banner.swift */; };
 		C089E9C0298AE21300398FE6 /* OpeningListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089E9BF298AE21300398FE6 /* OpeningListView.swift */; };
 		C089E9C2298AE29300398FE6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C089E9C1298AE29300398FE6 /* Model.swift */; };
 		C0B752272B45F5980083215F /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B752262B45F5980083215F /* InfoView.swift */; };
 		C0E4D42E2B138746006DD413 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E4D42D2B138746006DD413 /* ContactViewModel.swift */; };
 		C0E4D4302B14F83E006DD413 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E4D42F2B14F83E006DD413 /* ContactView.swift */; };
+		C0F3CD3B2C02C72D00A8F559 /* RightTrapazoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F3CD3A2C02C72D00A8F559 /* RightTrapazoid.swift */; };
+		C0F3CD3D2C02C8A500A8F559 /* PairedTrapazoidButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F3CD3C2C02C8A500A8F559 /* PairedTrapazoidButtons.swift */; };
+		C0F3CD3F2C02CFB200A8F559 /* Parallelogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F3CD3E2C02CFB200A8F559 /* Parallelogram.swift */; };
 		C0FBB06D2B2A4AC9003A6D43 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBB06C2B2A4AC9003A6D43 /* PracticeViewModel.swift */; };
 		C0FBB06F2B2AB6C1003A6D43 /* move.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C0FBB06E2B2AB6C1003A6D43 /* move.mp3 */; };
 /* End PBXBuildFile section */
@@ -42,11 +46,15 @@
 		C03C6A8B29818BAB009937EC /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		C03C6A8D2981905E009937EC /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		C048E07B29BEA048004932A1 /* PracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeView.swift; sourceTree = "<group>"; };
+		C064D4AA2BD6B4EC0086D4F6 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		C089E9BF298AE21300398FE6 /* OpeningListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningListView.swift; sourceTree = "<group>"; };
 		C089E9C1298AE29300398FE6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C0B752262B45F5980083215F /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		C0E4D42D2B138746006DD413 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		C0E4D42F2B14F83E006DD413 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		C0F3CD3A2C02C72D00A8F559 /* RightTrapazoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTrapazoid.swift; sourceTree = "<group>"; };
+		C0F3CD3C2C02C8A500A8F559 /* PairedTrapazoidButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairedTrapazoidButtons.swift; sourceTree = "<group>"; };
+		C0F3CD3E2C02CFB200A8F559 /* Parallelogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parallelogram.swift; sourceTree = "<group>"; };
 		C0FBB06C2B2A4AC9003A6D43 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		C0FBB06E2B2AB6C1003A6D43 /* move.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = move.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +128,8 @@
 				C0B752262B45F5980083215F /* InfoView.swift */,
 				C03C6A8B29818BAB009937EC /* CellView.swift */,
 				C0E4D42F2B14F83E006DD413 /* ContactView.swift */,
+				C0F3CD3C2C02C8A500A8F559 /* PairedTrapazoidButtons.swift */,
+				C0F3CD392C02C6FF00A8F559 /* Shapes */,
 			);
 			path = HelperViews;
 			sourceTree = "<group>";
@@ -142,6 +152,16 @@
 				C0E4D42D2B138746006DD413 /* ContactViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C0F3CD392C02C6FF00A8F559 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				C064D4AA2BD6B4EC0086D4F6 /* Banner.swift */,
+				C0F3CD3A2C02C72D00A8F559 /* RightTrapazoid.swift */,
+				C0F3CD3E2C02CFB200A8F559 /* Parallelogram.swift */,
+			);
+			path = Shapes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,10 +238,12 @@
 				C089E9C0298AE21300398FE6 /* OpeningListView.swift in Sources */,
 				C03C6A8829808188009937EC /* Structs.swift in Sources */,
 				C03C6A8E2981905E009937EC /* LearnView.swift in Sources */,
+				C0F3CD3D2C02C8A500A8F559 /* PairedTrapazoidButtons.swift in Sources */,
 				C0FBB06D2B2A4AC9003A6D43 /* PracticeViewModel.swift in Sources */,
 				C03C6A8C29818BAB009937EC /* CellView.swift in Sources */,
 				C03C6A8A2980EA32009937EC /* BoardView.swift in Sources */,
 				C048E07C29BEA048004932A1 /* PracticeView.swift in Sources */,
+				C0F3CD3B2C02C72D00A8F559 /* RightTrapazoid.swift in Sources */,
 				C020DCCB29A06782002596E5 /* SettingsView.swift in Sources */,
 				C03C6A76297F9713009937EC /* ContentView.swift in Sources */,
 				C0E4D42E2B138746006DD413 /* ContactViewModel.swift in Sources */,
@@ -229,6 +251,8 @@
 				C020DCC929A06746002596E5 /* LandingPageView.swift in Sources */,
 				C02AB2032B9AA6A1005354D0 /* Extentions.swift in Sources */,
 				C0E4D4302B14F83E006DD413 /* ContactView.swift in Sources */,
+				C064D4AB2BD6B4EC0086D4F6 /* Banner.swift in Sources */,
+				C0F3CD3F2C02CFB200A8F559 /* Parallelogram.swift in Sources */,
 				C0B752272B45F5980083215F /* InfoView.swift in Sources */,
 				C089E9C2298AE29300398FE6 /* Model.swift in Sources */,
 			);
