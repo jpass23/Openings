@@ -95,18 +95,7 @@ struct PracticeView: View {
                             buttonLabel(title: "Play again?")
                         }
                     } else {
-                        HStack(spacing: 40) {
-                            Button {
-                                vm.undoMove()
-                            } label: {
-                                buttonLabel(title: "Undo")
-                            }
-                            Button {
-                                vm.resetRound()
-                            } label: {
-                                buttonLabel(title: "Reset")
-                            }
-                        }
+                        PairedTrapazoidButtons(title1: "Undo", title2: "Reset", func1: vm.undoMove, func2: vm.resetRound)
                     }
                 }else if (!vm.gameStarted && self.playingColor == "Black"){
                     Button{
@@ -115,7 +104,7 @@ struct PracticeView: View {
                         buttonLabel(title: "Start!")
                     }
                 }
-            }.padding(30)
+            }.padding(.vertical,30)
         }.sheet(isPresented: $showMenu) {} content: {
             OpeningListView(opening: $vm.opening, showMenu: $showMenu)
         }.onChange(of: vm.opening) { _ in
@@ -150,26 +139,28 @@ struct PracticeView: View {
             vm.setup(model: self.model)
         }
     }
-
+    
+    @ViewBuilder
     func buttonLabel(title: String) -> some View {
-        let gradient = LinearGradient(colors: [.primary, model.darkSquareColor],
+        let gradient = LinearGradient(colors: [model.darkSquareColor.darken(),model.darkSquareColor],
                                       startPoint: .topLeading,
                                       endPoint: .bottomTrailing)
-        return Text(title)
-            .font(.title)
-            .fontWeight(.bold)
-            .foregroundStyle(colorScheme == .dark ? .white : .black)
-            .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(gradient, lineWidth: 3)
-                    .saturation(colorScheme == .dark ? 1 : 3)
-            }
+        ZStack{
+            Parallelogram()
+                .fill(gradient)
+                .shadow(color: Color(hex: 0x666666), radius: 10, x: 5, y: 10)
+                .frame(width: UIScreen.screenWidth/2,height: 80)
+            Text(title)
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundStyle(.white)
+                .padding()
+        }
     }
 }
 
-struct PracticeView_Previews: PreviewProvider {
-    static var previews: some View {
-        PracticeView()
-    }
-}
+//struct PracticeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PracticeView()
+//    }
+//}
