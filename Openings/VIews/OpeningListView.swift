@@ -39,6 +39,42 @@ struct OpeningListView: View {
                         }
                     }
                 }
+                Section("Queens Gambit Variations") {
+                    ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
+                        if value.name == "Queens Gambit"{
+                            Button {
+                                opening = value
+                                showMenu = false
+                            } label: {
+                                Text(key).foregroundColor(.primary)
+                            }
+                        }
+                    }
+                }
+                Section("Kings Gambit Variations") {
+                    ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
+                        if value.name == "Kings Gambit"{
+                            Button {
+                                opening = value
+                                showMenu = false
+                            } label: {
+                                Text(key).foregroundColor(.primary)
+                            }
+                        }
+                    }
+                }
+                Section("Reti Opening Variations") {
+                    ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
+                        if value.name == "Reti"{
+                            Button {
+                                opening = value
+                                showMenu = false
+                            } label: {
+                                Text(key).foregroundColor(.primary)
+                            }
+                        }
+                    }
+                }
                 Section("Others") {
                     ForEach(model.openingsList.sorted(by: <), id: \.key) { key, value in
                         if let _ = value.variation{
